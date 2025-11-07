@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
 const menuItems = [
   { id: "jakttider", label: "Jakttider" },
   { id: "soltider", label: "Soltider" }
 ];
 
-const Menu: React.FC = () => {
-  const [active, setActive] = useState(menuItems[0].id);
+interface MenuProps {
+  activeMenu: string;
+  setActiveMenu: (id: string) => void;
+}
 
+const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
   return (
     <nav
       style={{
@@ -35,11 +38,14 @@ const Menu: React.FC = () => {
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              onClick={() => setActive(item.id)}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveMenu(item.id);
+              }}
               style={{
-                color: active === item.id ? "#E6F2E6" : "#A7C7A7",
-                fontWeight: active === item.id ? "bold" : "normal",
-                background: active === item.id ? "#264D26" : "transparent",
+                color: activeMenu === item.id ? "#E6F2E6" : "#A7C7A7",
+                fontWeight: activeMenu === item.id ? "bold" : "normal",
+                background: activeMenu === item.id ? "#264D26" : "transparent",
                 borderRadius: "6px",
                 padding: "0.5rem 1.2rem",
                 textDecoration: "none",
