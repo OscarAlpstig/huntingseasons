@@ -53,16 +53,24 @@ function App() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
-                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Art</th>
-                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Information</th>
-                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Jakttider</th>
+                <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Art</th>
+                <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Information / Regler</th>
+                <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Jakttider</th>
+                <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Län</th>
               </tr>
             </thead>
             <tbody>
               {jaktTider
                 .filter(row => selectedDate >= row.start && selectedDate <= row.end)
                 .map((row, idx) => (
-                  <JakttidRow key={idx} art={row.art} info={row.info} tider={row.tider} />
+                  <JakttidRow
+                    key={idx}
+                    art={row.art}
+                    info={row.info}
+                    regler={row.regler}
+                    tider={`${row.start.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })} - ${row.end.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })}`}
+                    lan={row.lan}
+                  />
                 ))}
             </tbody>
           </table>

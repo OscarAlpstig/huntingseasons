@@ -1,7 +1,56 @@
+body, html {
+  background: #1A2B1A;
+  color: #E6F2E6;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+h3, label {
+  color: #A7C7A7;
+}
+
+button, input[type="checkbox"] {
+  background: #2E8B57;
+  color: #E6F2E6;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+
+button:hover, input[type="checkbox"]:hover {
+  background: #3C9D3C;
+}
+
+th {
+  color: #A7C7A7;
+}
+
+td {
+  color: #E6F2E6;
+}
+
+.table-neutral {
+  background: #264D26;
+}
+
+.table-positive {
+  color: #3C9D3C;
+}
+
+.table-negative {
+  color: #6B8E23;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 4.5rem;
   text-align: center;
 }
 

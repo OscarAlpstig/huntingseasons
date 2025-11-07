@@ -71,3 +71,16 @@ export default defineConfig([
   },
 ])
 ```
+
+## Färgskala
+
+| Användning                | Färg (HEX) | Beskrivning                                              | Exempel |
+|---------------------------|:----------:|----------------------------------------------------------|:-------:|
+| Bakgrundsfärg             | `#1A2B1A`  | Mörk, dämpad grön för lugn bakgrund                      | <span style="background:#1A2B1A;border:1px solid #264D26;padding:0.2em 1em;">&nbsp;</span> |
+| Huvudtext                 | `#E6F2E6`  | Ljusgrönvit för hög kontrast och läsbarhet               | <span style="color:#E6F2E6;font-weight:bold;">Exempeltext</span> |
+| Sekundär text/etiketter   | `#A7C7A7`  | Ljusare grön för rubriker och etiketter                  | <span style="color:#A7C7A7;">Exempeltext</span> |
+| Positiva indikatorer      | `#3C9D3C`  | Klar grön för att visa godkända/ökning                   | <span style="color:#3C9D3C;">Exempeltext</span> |
+| Neutral status            | `#264D26`  | Mörkare grön för neutrala element                        | <span style="background:#264D26;border:1px solid #A7C7A7;padding:0.2em 1em;">&nbsp;</span> |
+| Negativa indikatorer      | `#6B8E23`  | Ockragrön för varning eller minskning, ändå naturlig      | <span style="color:#6B8E23;">Exempeltext</span> |
+| Knappar/brytare           | `#2E8B57`  | En mättad, djupare grön för klickbara element            | <span style="background:#2E8B57;color:#E6F2E6;padding:0.2em 1em;">Knapp</span> |
+
