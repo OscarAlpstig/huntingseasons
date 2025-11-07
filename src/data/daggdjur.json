@@ -1,0 +1,34 @@
+[
+  {
+    "art": "Rådjur",
+    "info": "Får jagas under höst och vinter",
+    "tider": "1 okt - 31 jan",
+    "start": {
+      "month": 9,
+      "day": 1,
+      "nextYear": false
+    },
+    "end": {
+      "month": 0,
+      "day": 31,
+      "nextYear": true
+    }
+  },
+  {
+    "art": "Vildsvin",
+    "info": "Får jagas året runt",
+    "tider": "1 jan - 31 dec",
+    "start": {
+      "month": 0,
+      "day": 1,
+      "nextYear": false
+    },
+    "end": {
+      "month": 11,
+      "day": 31,
+      "nextYear": false
+    }
+  }
+]
+
+

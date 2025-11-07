@@ -4,15 +4,17 @@ import Menu from './Menu'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import JakttidRow from './JakttidRow'
-import { getJaktTiderList } from './jaktTiderLoader';
-
-const jaktTider = getJaktTiderList();
+import { getFaglarList, getDaggdjurList } from './jaktTiderLoader';
 
 function App() {
-  // const [count, setCount] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [faglar, setFaglar] = useState(true);
   const [daggdjur, setDaggdjur] = useState(true);
+
+  const jaktTider = [
+    ...(faglar ? getFaglarList() : []),
+    ...(daggdjur ? getDaggdjurList() : []),
+  ];
 
   return (
     <>
@@ -58,8 +60,7 @@ function App() {
             </thead>
             <tbody>
               {jaktTider
-                .filter(row => ((faglar && row.typ === 'fågel') || (daggdjur && row.typ === 'däggdjur')) &&
-                  selectedDate >= row.start && selectedDate <= row.end)
+                .filter(row => selectedDate >= row.start && selectedDate <= row.end)
                 .map((row, idx) => (
                   <JakttidRow key={idx} art={row.art} info={row.info} tider={row.tider} />
                 ))}

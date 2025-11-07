@@ -1,0 +1,9 @@
+[
+  {
+    "art": "Gräsand",
+    "info": "Vanlig vattenfågel",
+    "tider": "21 aug - 31 dec",
+    "start": { "month": 7, "day": 21, "nextYear": false },
+    "end": { "month": 11, "day": 31, "nextYear": false }
+  }
+]
