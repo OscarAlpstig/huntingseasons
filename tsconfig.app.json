@@ -23,10 +23,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./@types"  // Include your custom types here
-    ]
   },
   "include": ["src"]
 }
