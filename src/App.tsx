@@ -4,27 +4,9 @@ import Menu from './Menu'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import JakttidRow from './JakttidRow'
+import { getJaktTiderList } from './jaktTiderLoader';
 
-const jaktTider = [
-  {
-    art: 'Rådjur',
-    info: 'Får jagas under höst och vinter',
-    tider: '1 okt - 31 jan',
-    typ: 'däggdjur',
-  },
-  {
-    art: 'Gräsand',
-    info: 'Vanlig vattenfågel',
-    tider: '21 aug - 31 dec',
-    typ: 'fågel',
-  },
-  {
-    art: 'Vildsvin',
-    info: 'Får jagas året runt',
-    tider: '1 jan - 31 dec',
-    typ: 'däggdjur',
-  },
-];
+const jaktTider = getJaktTiderList();
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -41,6 +23,13 @@ function App() {
           onChange={date => setSelectedDate(date || new Date())}
           dateFormat="yyyy-MM-dd"
         />
+        <button
+          type="button"
+          style={{ marginLeft: '1rem', padding: '0.3rem 0.8rem' }}
+          onClick={() => setSelectedDate(new Date())}
+        >
+          Idag
+        </button>
         <div style={{ marginTop: '1.5rem' }}>
           <label style={{ marginRight: '1rem' }}>
             <input
@@ -69,7 +58,8 @@ function App() {
             </thead>
             <tbody>
               {jaktTider
-                .filter(row => (faglar && row.typ === 'fågel') || (daggdjur && row.typ === 'däggdjur'))
+                .filter(row => ((faglar && row.typ === 'fågel') || (daggdjur && row.typ === 'däggdjur')) &&
+                  selectedDate >= row.start && selectedDate <= row.end)
                 .map((row, idx) => (
                   <JakttidRow key={idx} art={row.art} info={row.info} tider={row.tider} />
                 ))}

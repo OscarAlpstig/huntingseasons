@@ -1,0 +1,27 @@
+[
+  {
+    "art": "Rådjur",
+    "info": "Får jagas under höst och vinter",
+    "tider": "1 okt - 31 jan",
+    "typ": "däggdjur",
+    "start": { "month": 9, "day": 1, "nextYear": false },
+    "end": { "month": 0, "day": 31, "nextYear": true }
+  },
+  {
+    "art": "Gräsand",
+    "info": "Vanlig vattenfågel",
+    "tider": "21 aug - 31 dec",
+    "typ": "fågel",
+    "start": { "month": 7, "day": 21, "nextYear": false },
+    "end": { "month": 11, "day": 31, "nextYear": false }
+  },
+  {
+    "art": "Vildsvin",
+    "info": "Får jagas året runt",
+    "tider": "1 jan - 31 dec",
+    "typ": "däggdjur",
+    "start": { "month": 0, "day": 1, "nextYear": false },
+    "end": { "month": 11, "day": 31, "nextYear": false }
+  }
+]
+
