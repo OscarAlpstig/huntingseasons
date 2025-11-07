@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 import './App.css'
+import Menu from './Menu'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import JakttidRow from './JakttidRow'
+
+const jaktTider = [
+  {
+    art: 'Rådjur',
+    info: 'Får jagas under höst och vinter',
+    tider: '1 okt - 31 jan',
+    typ: 'däggdjur',
+  },
+  {
+    art: 'Gräsand',
+    info: 'Vanlig vattenfågel',
+    tider: '21 aug - 31 dec',
+    typ: 'fågel',
+  },
+  {
+    art: 'Vildsvin',
+    info: 'Får jagas året runt',
+    tider: '1 jan - 31 dec',
+    typ: 'däggdjur',
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [faglar, setFaglar] = useState(true);
+  const [daggdjur, setDaggdjur] = useState(true);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Menu />
+      <div style={{ padding: '1rem' }}>
+        <DatePicker
+          selected={selectedDate}
+          onChange={date => setSelectedDate(date || new Date())}
+          dateFormat="yyyy-MM-dd"
+        />
+        <div style={{ marginTop: '1.5rem' }}>
+          <label style={{ marginRight: '1rem' }}>
+            <input
+              type="checkbox"
+              checked={faglar}
+              onChange={e => setFaglar(e.target.checked)}
+            /> Fåglar
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={daggdjur}
+              onChange={e => setDaggdjur(e.target.checked)}
+            /> Däggdjur
+          </label>
+        </div>
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Jakttider</h3>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr>
+                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Art</th>
+                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Information</th>
+                <th style={{ borderBottom: '1px solid #ccc', textAlign: 'left' }}>Jakttider</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jaktTider
+                .filter(row => (faglar && row.typ === 'fågel') || (daggdjur && row.typ === 'däggdjur'))
+                .map((row, idx) => (
+                  <JakttidRow key={idx} art={row.art} info={row.info} tider={row.tider} />
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
 export default App
