@@ -133,7 +133,7 @@ const PlanetPhase = ({containerId, phase, isWaxing, config}) => {
     }, [containerId, phase, isWaxing, config]);
 
     return (
-        <div className="relative w-100 h-100" id={containerId} ref={containerRef}/>
+        <div className="relative w-100 h-100" style={{display: "flex", position: "relative", flexDirection:"center"}} id={containerId} ref={containerRef}/>
     );
 };
 

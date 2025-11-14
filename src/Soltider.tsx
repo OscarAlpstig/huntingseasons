@@ -100,8 +100,8 @@ const Soltider: React.FC<SoltiderProps> = ({date}) => {
                         <div style={{height: '100px'}}>
                             <Moon angle={moonData.angle} phasePercentage={Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100) / 100}/>
                         </div>
-                        <div style={{color: '#A7C7A7'}}>
-                            {Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100)}% belyst
+                        <div style={{color: 'var(--color-text-secondary)'}}>
+                            <strong>{Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100)}% belyst</strong>
                         </div>
                     </div>
                     <div>

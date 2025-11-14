@@ -1,4 +1,14 @@
 :root {
+  /* Färgskala från README.md */
+  --color-bg: #556B2F;
+  --color-text-main: #C6D870;
+  --color-text-secondary: #EFF5D2;
+  --color-positive: #8FA31E;
+  --color-neutral: #264D26;
+  --color-negative: #6B8E23;
+  --color-button: #896A58;
+  --color-button-text: #E6F2E6;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -28,30 +38,54 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+
+  color: var(--color-text-secondary);
 }
 
 button {
+  background-color: var(--color-button);
+  color: var(--color-button-text);
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-positive);
+  background-color: var(--color-neutral);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Tabellfärger */
+th {
+  color: var(--color-text-secondary);
+}
+td {
+  color: var(--color-text-main);
+}
+.table-neutral {
+  background: var(--color-neutral);
+}
+.table-positive {
+  color: var(--color-positive);
+}
+.table-negative {
+  color: var(--color-negative);
 }
 
 @media (prefers-color-scheme: light) {

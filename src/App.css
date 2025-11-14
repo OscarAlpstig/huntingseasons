@@ -1,18 +1,18 @@
 body, html {
-  background: #1A2B1A;
-  color: #E6F2E6;
+  background: var(--color-bg);
+  color: var(--color-text-main);
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
 h3, label {
-  color: #A7C7A7;
+  color: var(--color-text-secondary);
 }
 
 button, input[type="checkbox"] {
-  background: #2E8B57;
-  color: #E6F2E6;
+  background: var(--color-button);
+  color: var(--color-button-text);
   border: none;
   border-radius: 6px;
   padding: 0.3rem 0.8rem;
@@ -23,27 +23,27 @@ button, input[type="checkbox"] {
 }
 
 button:hover, input[type="checkbox"]:hover {
-  background: #3C9D3C;
+  background: var(--color-neutral);
 }
 
 th {
-  color: #A7C7A7;
+  color: var(--color-text-secondary);
 }
 
 td {
-  color: #E6F2E6;
+  color: var(--color-text-main);
 }
 
 .table-neutral {
-  background: #264D26;
+  background: var(--color-neutral);
 }
 
 .table-positive {
-  color: #3C9D3C;
+  color: var(--color-positive);
 }
 
 .table-negative {
-  color: #6B8E23;
+  color: var(--color-negative);
 }
 
 #root {

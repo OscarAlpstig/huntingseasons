@@ -1,4 +1,3 @@
-
 // @ts-ignore
 import PlanetPhase from "./PlanetPhase";
 
@@ -8,7 +7,7 @@ interface MoonProps {
 }
 
 const Moon = (props: MoonProps) => {
-    const isWaxing = (angle:number | undefined) => {
+    const isWaxing = (angle: number | undefined) => {
         let isWaxing = false;
         if (angle != null) {
             isWaxing = Math.sign(angle) === 1;
@@ -19,7 +18,10 @@ const Moon = (props: MoonProps) => {
     return (
         <div style={{display: "flex", flexDirection: "row"}}>
             {/*// @ts-ignore*/}
-            <PlanetPhase containerId="container" phase={props.phasePercentage} isWaxing={isWaxing(props.angle)}  />
+            <PlanetPhase
+                containerId="container" 
+                phase={props.phasePercentage} 
+                isWaxing={isWaxing(props.angle)}/>
         </div>
     );
 }

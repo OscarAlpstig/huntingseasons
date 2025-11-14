@@ -43,7 +43,7 @@ const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
                 setActiveMenu(item.id);
               }}
               style={{
-                color: activeMenu === item.id ? "#E6F2E6" : "#A7C7A7",
+                color: activeMenu === item.id ? "var(--color-button-text)" : "var(--color-text-secondary)",
                 fontWeight: activeMenu === item.id ? "bold" : "normal",
                 background: activeMenu === item.id ? "#264D26" : "transparent",
                 borderRadius: "6px",
