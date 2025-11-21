@@ -12,11 +12,17 @@ function App() {
   const [faglar, setFaglar] = useState(true);
   const [daggdjur, setDaggdjur] = useState(true);
   const [activeMenu, setActiveMenu] = useState('jakttider');
+  const [selectedLan, setSelectedLan] = useState<string>('Alla län');
 
   const jaktTider = [
     ...(faglar ? getFaglarList() : []),
     ...(daggdjur ? getDaggdjurList() : []),
   ];
+
+  // Extract unique counties from the data
+  const allLans = Array.from(new Set(jaktTider.flatMap(row => row.lan)))
+    .filter(lan => lan !== 'Alla län')
+    .sort();
 
   return (
     <>
@@ -34,24 +40,42 @@ function App() {
         >
           Idag
         </button>
+
         {activeMenu === 'jakttider' && (
           <>
-            <div style={{ marginTop: '1.5rem' }}>
-              <label style={{ marginRight: '1rem' }}>
-                <input
-                  type="checkbox"
-                  checked={faglar}
-                  onChange={e => setFaglar(e.target.checked)}
-                /> Fåglar
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={daggdjur}
-                  onChange={e => setDaggdjur(e.target.checked)}
-                /> Däggdjur
-              </label>
+            <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+              <div>
+                <label style={{ marginRight: '1rem' }}>
+                  <input
+                    type="checkbox"
+                    checked={faglar}
+                    onChange={e => setFaglar(e.target.checked)}
+                  /> Fåglar
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={daggdjur}
+                    onChange={e => setDaggdjur(e.target.checked)}
+                  /> Däggdjur
+                </label>
+              </div>
+
+              <div>
+                <label style={{ marginRight: '0.5rem' }}>Välj län:</label>
+                <select
+                  value={selectedLan}
+                  onChange={(e) => setSelectedLan(e.target.value)}
+                  style={{ padding: '0.3rem' }}
+                >
+                  <option value="Alla län">Alla län</option>
+                  {allLans.map(lan => (
+                    <option key={lan} value={lan}>{lan}</option>
+                  ))}
+                </select>
+              </div>
             </div>
+
             <div style={{ marginTop: '2rem' }}>
               <h3>Jakttider</h3>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -60,12 +84,12 @@ function App() {
                     <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Art</th>
                     <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Information / Regler</th>
                     <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Jakttider</th>
-                    <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Län</th>
                   </tr>
                 </thead>
                 <tbody>
                   {jaktTider
                     .filter(row => selectedDate >= row.start && selectedDate <= row.end)
+                    .filter(row => selectedLan === 'Alla län' || row.lan.includes('Alla län') || row.lan.includes(selectedLan))
                     .map((row, idx) => (
                       <JakttidRow
                         key={idx}
@@ -73,7 +97,6 @@ function App() {
                         info={row.info}
                         regler={row.regler}
                         tider={`${row.start.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })} - ${row.end.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })}`}
-                        lan={row.lan}
                       />
                     ))}
                 </tbody>

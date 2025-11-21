@@ -3,18 +3,20 @@ import React from 'react';
 interface JakttidRowProps {
   art: string;
   info: string;
-  regler?: string;
+  regler: string;
   tider: string;
-  lan?: string[];
 }
 
-const JakttidRow: React.FC<JakttidRowProps> = ({ art, info, regler, tider, lan }) => (
-  <tr>
-    <td style={{ padding: '0.5rem 0' }}>{art}</td>
-    <td style={{ padding: '0.5rem 0' }}>{info}{regler ? <><br /><span style={{ color: 'var(--color-text-secondary)', fontSize: '0.95em' }}>{regler}</span></> : null}</td>
-    <td style={{ padding: '0.5rem 0' }}>{tider}</td>
-    <td style={{ padding: '0.5rem 0' }}>{lan ? lan.join(', ') : ''}</td>
-  </tr>
-);
-
+const JakttidRow = ({ art, info, regler, tider }: JakttidRowProps) => {
+  return (
+    <tr>
+      <td style={{ borderBottom: '1px solid #ddd', padding: '0.5rem' }}>{art}</td>
+      <td style={{ borderBottom: '1px solid #ddd', padding: '0.5rem' }}>
+        <div><strong>{info}</strong></div>
+        <div style={{ fontSize: '0.9em', color: '#666' }}>{regler}</div>
+      </td>
+      <td style={{ borderBottom: '1px solid #ddd', padding: '0.5rem' }}>{tider}</td>
+    </tr>
+  );
+};
 export default JakttidRow;

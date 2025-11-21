@@ -16,12 +16,12 @@ const Moon = (props: MoonProps) => {
     }
     // @ts-ignore
     return (
-        <div style={{display: "flex", flexDirection: "row"}}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
             {/*// @ts-ignore*/}
             <PlanetPhase
-                containerId="container" 
-                phase={props.phasePercentage} 
-                isWaxing={isWaxing(props.angle)}/>
+                containerId="container"
+                phase={props.phasePercentage}
+                isWaxing={isWaxing(props.angle)} />
         </div>
     );
 }

@@ -5,16 +5,72 @@
       {
         "info": "Får jagas under höst och vinter",
         "regler": "Endast vuxna djur tillåtna",
-        "start": { "month": 9, "day": 1, "nextYear": false },
-        "end": { "month": 0, "day": 31, "nextYear": true },
-        "lan": ["Stockholm", "Uppsala", "Södermanland"]
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 0,
+          "day": 31,
+          "nextYear": true
+        },
+        "lan": [
+          "Stockholm",
+          "Uppsala",
+          "Södermanland"
+        ]
       },
       {
         "info": "Kalv får jagas under särskild period",
         "regler": "Endast kalv tillåten",
-        "start": { "month": 8, "day": 16, "nextYear": false },
-        "end": { "month": 9, "day": 30, "nextYear": false },
-        "lan": ["Stockholm"]
+        "start": {
+          "month": 8,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 9,
+          "day": 30,
+          "nextYear": false
+        },
+        "lan": [
+          "Stockholm"
+        ]
+      },
+      {
+        "info": "Vårbock",
+        "regler": "Endast hornbärande handjur (bock)",
+        "start": {
+          "month": 4,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 5,
+          "day": 15,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Bockjakt",
+        "regler": "Endast hornbärande handjur (bock)",
+        "start": {
+          "month": 7,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 8,
+          "day": 30,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
       }
     ]
   },
@@ -24,16 +80,476 @@
       {
         "info": "Får jagas året runt",
         "regler": "Alla åldrar tillåtna",
-        "start": { "month": 0, "day": 1, "nextYear": false },
-        "end": { "month": 11, "day": 31, "nextYear": false },
-        "lan": ["Alla län"]
+        "start": {
+          "month": 0,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 11,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Alla län"
+        ]
       },
       {
         "info": "Särskild period för årsunge",
         "regler": "Endast årsunge tillåten",
-        "start": { "month": 5, "day": 1, "nextYear": false },
-        "end": { "month": 7, "day": 31, "nextYear": false },
-        "lan": ["Skåne", "Blekinge"]
+        "start": {
+          "month": 5,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 7,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Skåne",
+          "Blekinge"
+        ]
+      },
+      {
+        "info": "Årsunge",
+        "regler": "Endast årsunge",
+        "start": {
+          "month": 1,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Bäver",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 4,
+          "day": 10,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Dovhjort",
+    "perioder": [
+      {
+        "info": "Huvudsäsong",
+        "regler": "",
+        "start": {
+          "month": 10,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Brunstuppehåll/Försäsong",
+        "regler": "Endast hornbärande",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 8,
+          "day": 30,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Oktoberjakt",
+        "regler": "",
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 9,
+          "day": 20,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Sen höst",
+        "regler": "",
+        "start": {
+          "month": 9,
+          "day": 21,
+          "nextYear": false
+        },
+        "end": {
+          "month": 10,
+          "day": 15,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Vårjakt",
+        "regler": "Endast hind och kalv",
+        "start": {
+          "month": 2,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Fälthare",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Grävling",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 7,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 0,
+          "day": 31,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Iller",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Kronhjort",
+    "perioder": [
+      {
+        "info": "Huvudsäsong",
+        "regler": "",
+        "start": {
+          "month": 7,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 0,
+          "day": 31,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Brunstuppehåll",
+        "regler": "Endast hind och kalv",
+        "start": {
+          "month": 7,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 8,
+          "day": 15,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Sen september",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 8,
+          "day": 30,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Vårjakt",
+        "regler": "Endast hind och kalv",
+        "start": {
+          "month": 1,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Mink",
+    "perioder": [
+      {
+        "info": "Skyddsjakt",
+        "regler": "",
+        "start": {
+          "month": 6,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 5,
+          "day": 30,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Mufflonfår",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 0,
+          "day": 31,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      },
+      {
+        "info": "Vårjakt",
+        "regler": "",
+        "start": {
+          "month": 1,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Mård",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Mårdhund",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 7,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 3,
+          "day": 15,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Rödräv",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 7,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 15,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Skogshare",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Vildkanin",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "regler": "",
+        "start": {
+          "month": 8,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland"
+        ]
       }
     ]
   }
