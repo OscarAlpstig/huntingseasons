@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.scss'
 import Menu from './Menu'
 import DatePicker from 'react-datepicker'
@@ -12,7 +12,13 @@ function App() {
   const [faglar, setFaglar] = useState(true);
   const [daggdjur, setDaggdjur] = useState(true);
   const [activeMenu, setActiveMenu] = useState('jakttider');
-  const [selectedLan, setSelectedLan] = useState<string>('Alla län');
+  const [selectedLan, setSelectedLan] = useState<string>(() => {
+    return localStorage.getItem('selectedLan') || 'Alla län';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('selectedLan', selectedLan);
+  }, [selectedLan]);
 
   const jaktTider = [
     ...(faglar ? getFaglarList() : []),
