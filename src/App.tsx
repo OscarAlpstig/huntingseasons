@@ -3,7 +3,7 @@ import './App.scss'
 import Menu from './Menu'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import JakttidRow from './JakttidRow'
+import JakttidCard from './components/JakttidCard/JakttidCard'
 import Soltider from './Soltider'
 import { getFaglarList, getDaggdjurList } from './jaktTiderLoader';
 
@@ -84,29 +84,20 @@ function App() {
 
             <div style={{ marginTop: '2rem' }}>
               <h3>Jakttider</h3>
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr>
-                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Art</th>
-                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Information / Regler</th>
-                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Jakttider</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {jaktTider
-                    .filter(row => selectedDate >= row.start && selectedDate <= row.end)
-                    .filter(row => selectedLan === 'Alla län' || row.lan.includes('Alla län') || row.lan.includes(selectedLan))
-                    .map((row, idx) => (
-                      <JakttidRow
-                        key={idx}
-                        art={row.art}
-                        info={row.info}
-                        regler={row.regler}
-                        tider={`${row.start.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })} - ${row.end.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })}`}
-                      />
-                    ))}
-                </tbody>
-              </table>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {jaktTider
+                  .filter(row => selectedDate >= row.start && selectedDate <= row.end)
+                  .filter(row => selectedLan === 'Alla län' || row.lan.includes('Alla län') || row.lan.includes(selectedLan))
+                  .map((row, idx) => (
+                    <JakttidCard
+                      key={idx}
+                      art={row.art}
+                      info={row.info}
+                      regler={row.regler}
+                      tider={`${row.start.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })} - ${row.end.toLocaleDateString('sv-SE', { month: 'short', day: 'numeric' })}`}
+                    />
+                  ))}
+              </div>
             </div>
           </>
         )}

@@ -1,0 +1,114 @@
+.jakttid-card {
+    display: flex;
+    background-color: #2e2e2e;
+    /* Darker card background */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap: 1.5rem;
+    border-left: 4px solid var(--color-positive);
+    /* Accent color */
+
+    .animal-icon {
+        flex-shrink: 0;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-neutral);
+            mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>');
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>');
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            -webkit-mask-size: contain;
+            background-color: var(--color-text-secondary);
+            /* Fallback color */
+            opacity: 0.5;
+        }
+    }
+
+    .card-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: left;
+    }
+
+    .header {
+        min-width: 150px;
+        flex-shrink: 0;
+
+        .art-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--color-text-main);
+        }
+    }
+
+    .info-section {
+        flex-grow: 1;
+        font-size: 0.95rem;
+
+        .info-text {
+            color: var(--color-text-main);
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .regler-text {
+            color: var(--color-text-secondary);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+    }
+
+    .times-section {
+        margin-top: 0;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        white-space: nowrap;
+        flex-shrink: 0;
+
+        .times-label {
+            margin-right: 0.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .times-value {
+            color: var(--color-positive);
+            font-weight: bold;
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .card-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .animal-icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}

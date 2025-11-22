@@ -18,7 +18,7 @@ const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
         position: "fixed",
         top: 0,
         left: 0,
-        zIndex: 100,
+        zIndex: 1000,
         background: "var(--color-menu-bg)",
         boxShadow: "0 2px 8px rgba(38,77,38,0.15)",
         borderBottom: "2px solid var(--color-neutral)"
