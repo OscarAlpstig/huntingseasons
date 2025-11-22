@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Moon from './components/Moon';
 // @ts-ignore
-import {GetMoonIllumination, GetMoonTimes, GetTimes} from "../lib/Suncalc/suncalc";
-import {GetTimeOfDay} from "../lib/utils.ts";
+import { GetMoonIllumination, GetMoonTimes, GetTimes } from "../lib/Suncalc/suncalc";
+import { GetTimeOfDay } from "../lib/utils.ts";
 
 interface SoltiderProps {
     date: Date;
@@ -30,7 +30,7 @@ interface MoonTimes {
     set: Date,
 }
 
-const Soltider: React.FC<SoltiderProps> = ({date}) => {
+const Soltider: React.FC<SoltiderProps> = ({ date }) => {
     const [times, setTimes] = React.useState<Partial<SunTimes>>({});
     const [moonTimes, setMoonTimes] = React.useState<Partial<MoonTimes>>({});
     const [moonData, setMoonData] = React.useState<Partial<MoonData>>({});
@@ -85,28 +85,28 @@ const Soltider: React.FC<SoltiderProps> = ({date}) => {
     }
 
     return (
-        <div style={{marginTop: '2rem'}}>
+        <div style={{ marginTop: '2rem' }}>
             <h3>Soltider</h3>
-            <div style={{marginBottom: '1.5rem'}}>
-                <strong>Borgerlig gryning:</strong> {GetTimeOfDay(times.dawn)}<br/>
-                <strong>Solupgång:</strong> {GetTimeOfDay(times.sunrise)}<br/>
-                <strong>Solnedgång:</strong> {GetTimeOfDay(times.sunset)}<br/>
-                <strong>Borgerlig skymning:</strong> {GetTimeOfDay(times.dusk)}<br/>
+            <div style={{ marginBottom: '1.5rem' }}>
+                <strong>Borgerlig gryning:</strong> {GetTimeOfDay(times.dawn)}<br />
+                <strong>Solupgång:</strong> {GetTimeOfDay(times.sunrise)}<br />
+                <strong>Solnedgång:</strong> {GetTimeOfDay(times.sunset)}<br />
+                <strong>Borgerlig skymning:</strong> {GetTimeOfDay(times.dusk)}<br />
             </div>
             <div>
                 <h4>Månen</h4>
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div>
-                        <div style={{height: '100px'}}>
-                            <Moon angle={moonData.angle} phasePercentage={Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100) / 100}/>
+                        <div style={{ height: '100px' }}>
+                            <Moon angle={moonData.angle} phasePercentage={Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100) / 100} />
                         </div>
-                        <div style={{color: 'var(--color-text-secondary)'}}>
+                        <div style={{ color: 'var(--color-text-secondary)', textAlign: 'center' }}>
                             <strong>{Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100)}% belyst</strong>
                         </div>
                     </div>
-                    <div>
-                        <strong>Månuppgång:</strong> {moonTimes.alwaysUp ? 'Alltid uppe' : `${GetTimeOfDay(moonTimes.rise)}`}<br/>
-                        <strong>Månnedgång:</strong> {moonTimes.alwaysDown ? 'Alltid nere' : `${GetTimeOfDay(moonTimes.set)}`}<br/>
+                    <div style={{ marginTop: '1rem' }}>
+                        <strong>Månuppgång:</strong> {moonTimes.alwaysUp ? 'Alltid uppe' : `${GetTimeOfDay(moonTimes.rise)}`}<br />
+                        <strong>Månnedgång:</strong> {moonTimes.alwaysDown ? 'Alltid nere' : `${GetTimeOfDay(moonTimes.set)}`}<br />
                     </div>
                 </div>
             </div>
