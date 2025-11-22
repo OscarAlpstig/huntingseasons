@@ -1,4 +1,30 @@
-body, html {
+:root {
+  /* Färgskala från README.md */
+  --color-bg: #556B2F;
+  --color-text-main: #C6D870;
+  --color-text-secondary: #EFF5D2;
+  --color-positive: #8FA31E;
+  --color-neutral: #264D26;
+  --color-negative: #6B8E23;
+  --color-button: #896A58;
+  --color-button-text: #E6F2E6;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
   background: var(--color-bg);
   color: var(--color-text-main);
   margin: 0;
@@ -6,11 +32,13 @@ body, html {
   font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
-h3, label {
+h3,
+label {
   color: var(--color-text-secondary);
 }
 
-button, input[type="checkbox"] {
+button,
+input[type="checkbox"] {
   background: var(--color-button);
   color: var(--color-button-text);
   border: none;
@@ -22,7 +50,8 @@ button, input[type="checkbox"] {
   transition: background 0.2s;
 }
 
-button:hover, input[type="checkbox"]:hover {
+button:hover,
+input[type="checkbox"]:hover {
   background: var(--color-neutral);
 }
 
@@ -60,9 +89,11 @@ td {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -71,6 +102,7 @@ td {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

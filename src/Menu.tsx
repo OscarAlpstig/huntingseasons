@@ -19,9 +19,9 @@ const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
         top: 0,
         left: 0,
         zIndex: 100,
-        background: "#1A2B1A",
+        background: "var(--color-menu-bg)",
         boxShadow: "0 2px 8px rgba(38,77,38,0.15)",
-        borderBottom: "2px solid #264D26"
+        borderBottom: "2px solid var(--color-neutral)"
       }}
     >
       <ul
@@ -45,7 +45,7 @@ const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
               style={{
                 color: activeMenu === item.id ? "var(--color-button-text)" : "var(--color-text-secondary)",
                 fontWeight: activeMenu === item.id ? "bold" : "normal",
-                background: activeMenu === item.id ? "#264D26" : "transparent",
+                background: activeMenu === item.id ? "var(--color-neutral)" : "transparent",
                 borderRadius: "6px",
                 padding: "0.5rem 1.2rem",
                 textDecoration: "none",

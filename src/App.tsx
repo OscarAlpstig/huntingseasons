@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css'
+import './App.scss'
 import Menu from './Menu'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -81,9 +81,9 @@ function App() {
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr>
-                    <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Art</th>
-                    <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Information / Regler</th>
-                    <th style={{ borderBottom: '1px solid #264D26', textAlign: 'left' }}>Jakttider</th>
+                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Art</th>
+                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Information / Regler</th>
+                    <th style={{ borderBottom: '1px solid var(--color-neutral)', textAlign: 'left' }}>Jakttider</th>
                   </tr>
                 </thead>
                 <tbody>
