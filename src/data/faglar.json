@@ -5,16 +5,37 @@
       {
         "info": "Vanlig vattenfågel, allmän jaktperiod",
         "regler": "Endast med tillstånd",
-        "start": { "month": 7, "day": 21, "nextYear": false },
-        "end": { "month": 11, "day": 31, "nextYear": false },
-        "lan": ["Alla län"]
+        "start": {
+          "month": 8,
+          "day": 21,
+          "nextYear": false
+        },
+        "end": {
+          "month": 12,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Alla län"
+        ]
       },
       {
         "info": "Särskild skyddsperiod",
         "regler": "Endast skyddsjakt tillåten",
-        "start": { "month": 2, "day": 1, "nextYear": false },
-        "end": { "month": 3, "day": 31, "nextYear": false },
-        "lan": ["Skåne", "Blekinge"]
+        "start": {
+          "month": 3,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 4,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Skåne",
+          "Blekinge"
+        ]
       }
     ]
   }

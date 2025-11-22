@@ -6,12 +6,12 @@
         "info": "Får jagas under höst och vinter",
         "regler": "Endast vuxna djur tillåtna",
         "start": {
-          "month": 9,
+          "month": 10,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 0,
+          "month": 1,
           "day": 31,
           "nextYear": true
         },
@@ -25,12 +25,12 @@
         "info": "Kalv får jagas under särskild period",
         "regler": "Endast kalv tillåten",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 9,
+          "month": 10,
           "day": 30,
           "nextYear": false
         },
@@ -42,12 +42,12 @@
         "info": "Vårbock",
         "regler": "Endast hornbärande handjur (bock)",
         "start": {
-          "month": 4,
+          "month": 5,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 5,
+          "month": 6,
           "day": 15,
           "nextYear": false
         },
@@ -59,12 +59,12 @@
         "info": "Bockjakt",
         "regler": "Endast hornbärande handjur (bock)",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 8,
+          "month": 9,
           "day": 30,
           "nextYear": false
         },
@@ -81,12 +81,12 @@
         "info": "Får jagas året runt",
         "regler": "Alla åldrar tillåtna",
         "start": {
-          "month": 0,
+          "month": 1,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 11,
+          "month": 12,
           "day": 31,
           "nextYear": false
         },
@@ -98,12 +98,12 @@
         "info": "Särskild period för årsunge",
         "regler": "Endast årsunge tillåten",
         "start": {
-          "month": 5,
+          "month": 6,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 7,
+          "month": 8,
           "day": 31,
           "nextYear": false
         },
@@ -116,12 +116,12 @@
         "info": "Årsunge",
         "regler": "Endast årsunge",
         "start": {
-          "month": 1,
+          "month": 2,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 2,
+          "month": 3,
           "day": 31,
           "nextYear": false
         },
@@ -138,12 +138,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 9,
+          "month": 10,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 4,
+          "month": 5,
           "day": 10,
           "nextYear": true
         },
@@ -160,12 +160,12 @@
         "info": "Huvudsäsong",
         "regler": "",
         "start": {
-          "month": 10,
+          "month": 11,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
@@ -177,12 +177,12 @@
         "info": "Brunstuppehåll/Försäsong",
         "regler": "Endast hornbärande",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 8,
+          "month": 9,
           "day": 30,
           "nextYear": false
         },
@@ -194,12 +194,12 @@
         "info": "Oktoberjakt",
         "regler": "",
         "start": {
-          "month": 9,
+          "month": 10,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 9,
+          "month": 10,
           "day": 20,
           "nextYear": false
         },
@@ -211,12 +211,12 @@
         "info": "Sen höst",
         "regler": "",
         "start": {
-          "month": 9,
+          "month": 10,
           "day": 21,
           "nextYear": false
         },
         "end": {
-          "month": 10,
+          "month": 11,
           "day": 15,
           "nextYear": false
         },
@@ -228,12 +228,12 @@
         "info": "Vårjakt",
         "regler": "Endast hind och kalv",
         "start": {
-          "month": 2,
+          "month": 3,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 2,
+          "month": 3,
           "day": 31,
           "nextYear": false
         },
@@ -250,12 +250,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
@@ -272,12 +272,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 0,
+          "month": 1,
           "day": 31,
           "nextYear": true
         },
@@ -294,12 +294,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
@@ -316,12 +316,12 @@
         "info": "Huvudsäsong",
         "regler": "",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 0,
+          "month": 1,
           "day": 31,
           "nextYear": true
         },
@@ -333,12 +333,12 @@
         "info": "Brunstuppehåll",
         "regler": "Endast hind och kalv",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 8,
+          "month": 9,
           "day": 15,
           "nextYear": false
         },
@@ -350,12 +350,12 @@
         "info": "Sen september",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 8,
+          "month": 9,
           "day": 30,
           "nextYear": false
         },
@@ -367,12 +367,12 @@
         "info": "Vårjakt",
         "regler": "Endast hind och kalv",
         "start": {
-          "month": 1,
+          "month": 2,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 2,
+          "month": 3,
           "day": 31,
           "nextYear": false
         },
@@ -389,12 +389,12 @@
         "info": "Skyddsjakt",
         "regler": "",
         "start": {
-          "month": 6,
+          "month": 7,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 5,
+          "month": 6,
           "day": 30,
           "nextYear": true
         },
@@ -411,12 +411,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 0,
+          "month": 1,
           "day": 31,
           "nextYear": true
         },
@@ -428,12 +428,12 @@
         "info": "Vårjakt",
         "regler": "",
         "start": {
-          "month": 1,
+          "month": 2,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 2,
+          "month": 3,
           "day": 31,
           "nextYear": false
         },
@@ -450,12 +450,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
@@ -472,12 +472,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 3,
+          "month": 4,
           "day": 15,
           "nextYear": true
         },
@@ -494,12 +494,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 7,
+          "month": 8,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 2,
+          "month": 3,
           "day": 15,
           "nextYear": true
         },
@@ -516,12 +516,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
@@ -538,12 +538,12 @@
         "info": "Allmän jakt",
         "regler": "",
         "start": {
-          "month": 8,
+          "month": 9,
           "day": 1,
           "nextYear": false
         },
         "end": {
-          "month": 1,
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
