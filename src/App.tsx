@@ -30,6 +30,56 @@ function App() {
     .filter(lan => lan !== 'Alla län')
     .sort();
 
+  const getUserLocation = (): Promise<GeolocationPosition> => {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('Din webbläsare stödjer inte geolokalisering.'));
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  };
+
+  const fetchCountyFromCoordinates = async (latitude: number, longitude: number): Promise<string | null> => {
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+      const data = await response.json();
+      return data.address.county || data.address.state || data.address.region || null;
+    } catch (error) {
+      console.error('Error fetching location:', error);
+      return null;
+    }
+  };
+
+  const matchCountyWithList = (county: string): string | null => {
+    return allLans.find(lan =>
+      county.toLowerCase().includes(lan.toLowerCase().replace(' län', '')) ||
+      lan.toLowerCase().includes(county.toLowerCase().replace(' län', ''))
+    ) || null;
+  };
+
+  const handleUseLocation = async () => {
+    try {
+      const position = await getUserLocation();
+      const { latitude, longitude } = position.coords;
+      const county = await fetchCountyFromCoordinates(latitude, longitude);
+
+      if (county) {
+        const matchedLan = matchCountyWithList(county);
+        if (matchedLan) {
+          setSelectedLan(matchedLan);
+        } else {
+          alert(`Kunde inte matcha din plats (${county}) med något län i listan.`);
+        }
+      } else {
+        alert('Kunde inte hitta län för din plats.');
+      }
+    } catch (error) {
+      console.error('Geolocation error:', error);
+      alert('Kunde inte hämta din plats. Kontrollera att du gett tillåtelse.');
+    }
+  };
+
   return (
     <>
       <Menu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
@@ -69,16 +119,26 @@ function App() {
 
               <div>
                 <label style={{ marginRight: '0.5rem' }}>Välj län:</label>
-                <select
-                  value={selectedLan}
-                  onChange={(e) => setSelectedLan(e.target.value)}
-                  style={{ padding: '0.3rem' }}
-                >
-                  <option value="Alla län">Alla län</option>
-                  {allLans.map(lan => (
-                    <option key={lan} value={lan}>{lan}</option>
-                  ))}
-                </select>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <select
+                    value={selectedLan}
+                    onChange={(e) => setSelectedLan(e.target.value)}
+                    style={{ padding: '0.3rem' }}
+                  >
+                    <option value="Alla län">Alla län</option>
+                    {allLans.map(lan => (
+                      <option key={lan} value={lan}>{lan}</option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={handleUseLocation}
+                    style={{ padding: '0.3rem 0.6rem', fontSize: '0.9rem' }}
+                    title="Använd min plats"
+                  >
+                    📍
+                  </button>
+                </div>
               </div>
             </div>
 
