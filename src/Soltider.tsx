@@ -30,7 +30,7 @@ interface MoonTimes {
     set: Date,
 }
 
-const Soltider: React.FC<SoltiderProps> = ({ date }) => {
+const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
     const [times, setTimes] = React.useState<Partial<SunTimes>>({});
     const [moonTimes, setMoonTimes] = React.useState<Partial<MoonTimes>>({});
     const [moonData, setMoonData] = React.useState<Partial<MoonData>>({});
@@ -39,11 +39,11 @@ const Soltider: React.FC<SoltiderProps> = ({ date }) => {
         getSunTimes();
         getMoonTimes();
         getMoonData();
-    }, [date])
+    }, [date, lat, lon])
 
 
     const getSunTimes = () => {
-        let times = GetTimes(date, 59.21748, 18.5269);
+        let times = GetTimes(date, lat, lon);
         let newTimesObject = {
             // @ts-ignore
             sunrise: times.sunrise as DateTime,
@@ -59,7 +59,7 @@ const Soltider: React.FC<SoltiderProps> = ({ date }) => {
     }
 
     const getMoonTimes = () => {
-        let times = GetMoonTimes(date, 59.21748, 18.5269);
+        let times = GetMoonTimes(date, lat, lon);
 
         let newMoonPos = {
             rise: times.rise as Date,

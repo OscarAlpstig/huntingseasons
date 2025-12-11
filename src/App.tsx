@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import JakttidCard from './components/JakttidCard/JakttidCard'
 import Soltider from './Soltider'
 import { getFaglarList, getDaggdjurList } from './jaktTiderLoader';
+import LocationSelector from './components/LocationSelector';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -15,6 +16,8 @@ function App() {
   const [selectedLan, setSelectedLan] = useState<string>(() => {
     return localStorage.getItem('selectedLan') || 'Alla län';
   });
+  const [lat, setLat] = useState(59.3293); // Default Stockholm
+  const [lon, setLon] = useState(18.0686);
 
   useEffect(() => {
     localStorage.setItem('selectedLan', selectedLan);
@@ -29,56 +32,6 @@ function App() {
   const allLans = Array.from(new Set(jaktTider.flatMap(row => row.lan)))
     .filter(lan => lan !== 'Alla län')
     .sort();
-
-  const getUserLocation = (): Promise<GeolocationPosition> => {
-    return new Promise((resolve, reject) => {
-      if (!navigator.geolocation) {
-        reject(new Error('Din webbläsare stödjer inte geolokalisering.'));
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-  };
-
-  const fetchCountyFromCoordinates = async (latitude: number, longitude: number): Promise<string | null> => {
-    try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
-      const data = await response.json();
-      return data.address.county || data.address.state || data.address.region || null;
-    } catch (error) {
-      console.error('Error fetching location:', error);
-      return null;
-    }
-  };
-
-  const matchCountyWithList = (county: string): string | null => {
-    return allLans.find(lan =>
-      county.toLowerCase().includes(lan.toLowerCase().replace(' län', '')) ||
-      lan.toLowerCase().includes(county.toLowerCase().replace(' län', ''))
-    ) || null;
-  };
-
-  const handleUseLocation = async () => {
-    try {
-      const position = await getUserLocation();
-      const { latitude, longitude } = position.coords;
-      const county = await fetchCountyFromCoordinates(latitude, longitude);
-
-      if (county) {
-        const matchedLan = matchCountyWithList(county);
-        if (matchedLan) {
-          setSelectedLan(matchedLan);
-        } else {
-          alert(`Kunde inte matcha din plats (${county}) med något län i listan.`);
-        }
-      } else {
-        alert('Kunde inte hitta län för din plats.');
-      }
-    } catch (error) {
-      console.error('Geolocation error:', error);
-      alert('Kunde inte hämta din plats. Kontrollera att du gett tillåtelse.');
-    }
-  };
 
   return (
     <>
@@ -116,32 +69,16 @@ function App() {
                   /> Däggdjur
                 </label>
               </div>
-
-              <div>
-                <label style={{ marginRight: '0.5rem' }}>Välj län:</label>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <select
-                    value={selectedLan}
-                    onChange={(e) => setSelectedLan(e.target.value)}
-                    style={{ padding: '0.3rem' }}
-                  >
-                    <option value="Alla län">Alla län</option>
-                    {allLans.map(lan => (
-                      <option key={lan} value={lan}>{lan}</option>
-                    ))}
-                  </select>
-                  <button
-                    type="button"
-                    onClick={handleUseLocation}
-                    style={{ padding: '0.3rem 0.6rem', fontSize: '0.9rem' }}
-                    title="Använd min plats"
-                  >
-                    📍
-                  </button>
-                </div>
-              </div>
+              <LocationSelector
+                selectedLan={selectedLan}
+                setSelectedLan={setSelectedLan}
+                lat={lat}
+                lon={lon}
+                setLat={setLat}
+                setLon={setLon}
+                allLans={allLans}
+              />
             </div>
-
             <div style={{ marginTop: '2rem' }}>
               <h3>Jakttider</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -162,7 +99,18 @@ function App() {
           </>
         )}
         {activeMenu === 'soltider' && (
-          <Soltider date={selectedDate} lat={59.3293} lon={18.0686} />
+          <>
+            <LocationSelector
+              selectedLan={selectedLan}
+              setSelectedLan={setSelectedLan}
+              lat={lat}
+              lon={lon}
+              setLat={setLat}
+              setLon={setLon}
+              allLans={allLans}
+            />
+            <Soltider date={selectedDate} lat={lat} lon={lon} />
+          </>
         )}
       </div>
     </>
