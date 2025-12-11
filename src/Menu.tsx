@@ -1,16 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const menuItems = [
   { id: "jakttider", label: "Jakttider" },
   { id: "soltider", label: "Soltider" }
 ];
 
-interface MenuProps {
-  activeMenu: string;
-  setActiveMenu: (id: string) => void;
-}
-
-const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
+const Menu: React.FC = () => {
   return (
     <nav
       style={{
@@ -36,24 +32,21 @@ const Menu: React.FC<MenuProps> = ({ activeMenu, setActiveMenu }) => {
       >
         {menuItems.map((item) => (
           <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveMenu(item.id);
-              }}
-              style={{
-                color: activeMenu === item.id ? "var(--color-button-text)" : "var(--color-text-secondary)",
-                fontWeight: activeMenu === item.id ? "bold" : "normal",
-                background: activeMenu === item.id ? "var(--color-neutral)" : "transparent",
+            <NavLink
+              to={`/${item.id}`}
+              style={({ isActive }) => ({
+                color: isActive ? "var(--color-button-text)" : "var(--color-text-secondary)",
+                fontWeight: isActive ? "bold" : "normal",
+                background: isActive ? "var(--color-neutral)" : "transparent",
                 borderRadius: "6px",
                 padding: "0.5rem 1.2rem",
                 textDecoration: "none",
                 transition: "background 0.2s, color 0.2s"
-              }}
+              })}
+              end
             >
               {item.label}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>
