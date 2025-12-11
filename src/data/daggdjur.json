@@ -1,5 +1,257 @@
 [
   {
+    "art": "Bäver",
+    "perioder": [
+      {
+        "info": "Allmän jakt",
+        "tidPaDygnet": "dygnet runt",
+        "regler": "",
+        "start": {
+          "month": 10,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 5,
+          "day": 10,
+          "nextYear": true
+        },
+        "lan": [
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      },
+      {
+        "info": "Allmän jakt",
+        "tidPaDygnet": "dygnet runt",
+        "regler": "",
+        "start": {
+          "month": 10,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 5,
+          "day": 15,
+          "nextYear": true
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Dovhjort",
+    "perioder": [
+      {
+        "info": "",
+        "tidPaDygnet": "Från en timme före soluppgång till en timme efter solnedgång. Under timmen efter solnedgång är det endast tillåtet att smyg- och vaktjaga.",
+        "regler": "Alla djur",
+        "start": {
+          "month": 11,
+          "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      },
+      {
+        "info": "",
+        "tidPaDygnet": "Från en timme före soluppgång till en timme efter solnedgång. Under timmen efter solnedgång är det endast tillåtet att smyg- och vaktjaga.",
+        "regler": "Endast hornbärande djur och kalv. Endast tillåtet att smyg- och vaktjaga.",
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 9,
+          "day": 30,
+          "nextYear": false
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      },
+      {
+        "info": "",
+        "regler": "Alla djur",
+        "start": {
+          "month": 10,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 10,
+          "day": 20,
+          "nextYear": false
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      },
+      {
+        "info": "",
+        "regler": "Endast hind och kalv",
+        "start": {
+          "month": 10,
+          "day": 21,
+          "nextYear": false
+        },
+        "end": {
+          "month": 11,
+          "day": 15,
+          "nextYear": false
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      },
+      {
+        "info": "",
+        "regler": "Endast hind och kalv. Det är endast tillåtet att smyg- och vaktjaga.",
+        "start": {
+          "month": 3,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 3,
+          "day": 31,
+          "nextYear": false
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge",
+          "Skåne"
+        ]
+      }
+    ]
+  },
+  {
     "art": "Rådjur",
     "perioder": [
       {
@@ -131,118 +383,7 @@
       }
     ]
   },
-  {
-    "art": "Bäver",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 5,
-          "day": 10,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Dovhjort",
-    "perioder": [
-      {
-        "info": "Huvudsäsong",
-        "regler": "",
-        "start": {
-          "month": 11,
-          "day": 16,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Brunstuppehåll/Försäsong",
-        "regler": "Endast hornbärande",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 9,
-          "day": 30,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Oktoberjakt",
-        "regler": "",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 10,
-          "day": 20,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Sen höst",
-        "regler": "",
-        "start": {
-          "month": 10,
-          "day": 21,
-          "nextYear": false
-        },
-        "end": {
-          "month": 11,
-          "day": 15,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Vårjakt",
-        "regler": "Endast hind och kalv",
-        "start": {
-          "month": 3,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 3,
-          "day": 31,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
+
   {
     "art": "Fälthare",
     "perioder": [
@@ -313,11 +454,47 @@
     "art": "Kronhjort",
     "perioder": [
       {
-        "info": "Huvudsäsong",
-        "regler": "",
+        "info": "Inom kronhjortsskötselområde",
+        "regler": "Endast hind och årskalv tillåtna. Till och med 30 september är det endast tillåtet att smyg- eller vaktjaga.",
         "start": {
           "month": 8,
           "day": 16,
+          "nextYear": false
+        },
+        "end": {
+          "month": 7,
+          "day": 10,
+          "nextYear": false
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge"
+        ]
+      },
+      {
+        "info": "Inom kronhjortsskötselområde",
+        "regler": "Alla djur",
+        "start": {
+          "month": 10,
+          "day": 8,
           "nextYear": false
         },
         "end": {
@@ -326,58 +503,115 @@
           "nextYear": true
         },
         "lan": [
-          "Södermanland"
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge"
         ]
       },
       {
-        "info": "Brunstuppehåll",
-        "regler": "Endast hind och kalv",
+        "info": "Inom kronhjortsskötselområde",
+        "regler": "Endast hind och årskalv tillåtna. Det är endast tillåtet att smyg- eller vaktjaga.",
+        "start": {
+          "month": 2,
+          "day": 1,
+          "nextYear": true
+        },
+        "end": {
+          "month": 2,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge"
+        ]
+      },
+      {
+        "info": "Utanför kronhjortsskötselområde",
+        "regler": "Endast årskalv tillåten. Till och med 30 september är det endast tillåtet att smyg- eller vaktjaga",
         "start": {
           "month": 8,
           "day": 16,
           "nextYear": false
         },
         "end": {
-          "month": 9,
-          "day": 15,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Sen september",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 16,
-          "nextYear": false
-        },
-        "end": {
-          "month": 9,
-          "day": 30,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Vårjakt",
-        "regler": "Endast hind och kalv",
-        "start": {
           "month": 2,
-          "day": 1,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          "Uppsala",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Stockholm",
+          "Södermanland",
+          "Östergötland",
+          "Västra götaland",
+          "Jönköping",
+          "Halland",
+          "Kronoberg",
+          "Gotland",
+          "Kalmar",
+          "Blekinge"
+        ]
+      },
+      {
+        "info": "Inom kronhjortsområde: Endast licensjakt. Utanför kronhjortsområde",
+        "regler": "Länsstyrelsen beslutar årligen jakttiden till en eller flera perioder under tiden\n",
+        "start": {
+          "month": 10,
+          "day": 8,
           "nextYear": false
         },
         "end": {
-          "month": 3,
+          "month": 1,
           "day": 31,
-          "nextYear": false
+          "nextYear": true
         },
         "lan": [
-          "Södermanland"
+          "Skåne"
         ]
       }
     ]

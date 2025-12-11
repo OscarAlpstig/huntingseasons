@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import JakttiderPage from './pages/JakttiderPage';
 import SoltiderPage from './pages/SoltiderPage';
-import { getFaglarList, getDaggdjurList } from './jaktTiderLoader';
+import { getFaglarList, getDaggdjurList } from './data/jaktTiderLoader';
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());

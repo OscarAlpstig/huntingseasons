@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import JakttidCard from '../components/JakttidCard/JakttidCard';
-import LocationSelector from '../components/LocationSelector';
-import { getFaglarList, getDaggdjurList } from '../jaktTiderLoader';
+import LocationSelector from '../components/LocationSelector/LocationSelector';
+import { getFaglarList, getDaggdjurList } from '../data/jaktTiderLoader';
 
 interface JakttiderPageProps {
   selectedDate: Date;

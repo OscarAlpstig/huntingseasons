@@ -1,5 +1,5 @@
 import React from 'react';
-import LocationSelector from '../components/LocationSelector';
+import LocationSelector from '../components/LocationSelector/LocationSelector';
 import Soltider from '../Soltider';
 
 interface SoltiderPageProps {

@@ -1,6 +1,6 @@
-import faglarJson from './data/faglar.json';
-import daggdjurJson from './data/daggdjur.json';
-import { getSeasonDate } from './dateUtils';
+import faglarJson from './faglar.json';
+import daggdjurJson from './daggdjur.json';
+import { getSeasonDate } from '../dateUtils';
 
 export function getFaglarList() {
   return (faglarJson as Array<{ art: string; perioder: any[] }>).flatMap((fagel) =>
