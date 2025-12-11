@@ -530,12 +530,12 @@
         "start": {
           "month": 2,
           "day": 1,
-          "nextYear": true
+          "nextYear": false
         },
         "end": {
           "month": 2,
           "day": 28,
-          "nextYear": true
+          "nextYear": false
         },
         "lan": [
           "Dalarna",
