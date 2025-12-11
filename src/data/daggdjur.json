@@ -383,7 +383,6 @@
       }
     ]
   },
-
   {
     "art": "Fälthare",
     "perioder": [
@@ -756,11 +755,83 @@
         },
         "end": {
           "month": 2,
+          "day": 15,
+          "nextYear": true
+        },
+        "lan": [
+          "Södermanland",
+          "Västragötaland",
+          "Östergötland",
+          "Jönköping",
+          "Kalmar",
+          "Kronoberg",
+          "Blekinge",
+          "Skåne",
+          "Halland",
+          "Gotland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Fälthare",
+    "perioder": [
+      {
+        "info": "",
+        "regler": "",
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
           "day": 28,
           "nextYear": true
         },
         "lan": [
-          "Södermanland"
+          "Södermanland",
+          "Västragötaland",
+          "Östergötland",
+          "Jönköping",
+          "Kalmar",
+          "Kronoberg",
+          "Blekinge",
+          "Skåne",
+          "Halland",
+          "Gotland"
+        ]
+      }
+    ]
+  },
+  {
+    "art": "Hare",
+    "perioder": [
+      {
+        "info": "Fälthare och skogshare",
+        "regler": "",
+        "start": {
+          "month": 9,
+          "day": 1,
+          "nextYear": false
+        },
+        "end": {
+          "month": 2,
+          "day": 28,
+          "nextYear": true
+        },
+        "lan": [
+          "Stockholm",
+          "Uppsala",
+          "Västmanland",
+          "Örebro",
+          "Värmland",
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten"
         ]
       }
     ]
