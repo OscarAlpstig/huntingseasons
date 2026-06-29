@@ -1,4 +1,37 @@
-# React + TypeScript + Vite
+# Huntingseasons
+
+En webbapplikation för svenska jakttider och soltider, byggd med React, TypeScript och Vite.
+
+## Kom igång
+
+### Förutsättningar
+
+- [Node.js](https://nodejs.org/) (version 18 eller senare)
+- npm (följer med Node.js)
+
+### Installation
+
+```bash
+npm install
+```
+
+### Starta utvecklingsservern
+
+```bash
+npm run dev
+```
+
+Applikationen öppnas på [http://localhost:5173](http://localhost:5173). Ändringar i koden reflekteras direkt tack vare Vites Hot Module Replacement (HMR).
+
+### Övriga kommandon
+
+| Kommando | Beskrivning |
+|---|---|
+| `npm run build` | Bygger applikationen för produktion (output i `dist/`) |
+| `npm run preview` | Förhandsgranskar produktionsbygget lokalt |
+| `npm run lint` | Kör ESLint på hela projektet |
+
+---
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

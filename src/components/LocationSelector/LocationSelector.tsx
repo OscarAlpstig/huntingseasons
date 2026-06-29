@@ -1,5 +1,49 @@
 import React from 'react';
 
+// Hårdkodade koordinater (ungefärligt centrum) för Sveriges 21 län
+const LAN_COORDINATES: Record<string, { lat: number; lon: number }> = {
+  'Blekinge län':          { lat: 56.1677, lon: 14.8563 },
+  'Dalarnas län':          { lat: 61.0914, lon: 14.6664 },
+  'Gotlands län':          { lat: 57.4684, lon: 18.4867 },
+  'Gävleborgs län':        { lat: 60.6749, lon: 16.1463 },
+  'Hallands län':          { lat: 56.6745, lon: 12.8578 },
+  'Jämtlands län':         { lat: 63.1792, lon: 14.6357 },
+  'Jönköpings län':        { lat: 57.7826, lon: 14.1618 },
+  'Kalmar län':            { lat: 56.6616, lon: 16.3616 },
+  'Kronobergs län':        { lat: 56.8809, lon: 14.8059 },
+  'Norrbottens län':       { lat: 67.8558, lon: 20.2253 },
+  'Skåne län':             { lat: 55.9903, lon: 13.5958 },
+  'Stockholms län':        { lat: 59.3293, lon: 18.0686 },
+  'Södermanlands län':     { lat: 59.0000, lon: 16.5000 },
+  'Uppsala län':           { lat: 59.8586, lon: 17.6389 },
+  'Värmlands län':         { lat: 59.3793, lon: 13.5036 },
+  'Västerbottens län':     { lat: 64.7507, lon: 20.9528 },
+  'Västernorrlands län':   { lat: 62.3908, lon: 17.3069 },
+  'Västmanlands län':      { lat: 59.6162, lon: 16.5528 },
+  'Västra Götalands län':  { lat: 58.2528, lon: 13.0596 },
+  'Örebro län':            { lat: 59.2741, lon: 15.2066 },
+  'Östergötlands län':     { lat: 58.4108, lon: 15.6214 },
+};
+
+/** Beräknar ungefärligt avstånd (grader²) mellan två koordinater. */
+function distanceSq(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  return (lat1 - lat2) ** 2 + (lon1 - lon2) ** 2;
+}
+
+/** Hittar närmaste län baserat på koordinater. */
+function nearestLan(latitude: number, longitude: number): string | null {
+  let best: string | null = null;
+  let bestDist = Infinity;
+  for (const [lan, coords] of Object.entries(LAN_COORDINATES)) {
+    const d = distanceSq(latitude, longitude, coords.lat, coords.lon);
+    if (d < bestDist) {
+      bestDist = d;
+      best = lan;
+    }
+  }
+  return best;
+}
+
 interface LocationSelectorProps {
   selectedLan: string;
   setSelectedLan: (lan: string) => void;
@@ -19,7 +63,6 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
   setLon,
   allLans,
 }) => {
-  // Flytta in logik för att hämta plats och län
   const getUserLocation = (): Promise<GeolocationPosition> => {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
@@ -30,40 +73,19 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
     });
   };
 
-  const fetchCountyFromCoordinates = async (latitude: number, longitude: number): Promise<string | null> => {
-    try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
-      const data = await response.json();
-      return data.address.county || data.address.state || data.address.region || null;
-    } catch (error) {
-      console.error('Error fetching location:', error);
-      return null;
-    }
-  };
-
-  const matchCountyWithList = (county: string): string | null => {
-    return allLans.find(lan =>
-      county.toLowerCase().includes(lan.toLowerCase().replace(' län', '')) ||
-      lan.toLowerCase().includes(county.toLowerCase().replace(' län', ''))
-    ) || null;
-  };
-
   const handleUseLocation = async () => {
     try {
       const position = await getUserLocation();
       const { latitude, longitude } = position.coords;
       setLat(latitude);
       setLon(longitude);
-      const county = await fetchCountyFromCoordinates(latitude, longitude);
-      if (county) {
-        const matchedLan = matchCountyWithList(county);
-        if (matchedLan) {
-          setSelectedLan(matchedLan);
-        } else {
-          alert(`Kunde inte matcha din plats (${county}) med något län i listan.`);
-        }
+      const matched = nearestLan(latitude, longitude);
+      if (matched && allLans.includes(matched)) {
+        setSelectedLan(matched);
+      } else if (matched) {
+        setSelectedLan(matched);
       } else {
-        alert('Kunde inte hitta län för din plats.');
+        alert('Kunde inte hitta närmaste län för din plats.');
       }
     } catch (error) {
       console.error('Geolocation error:', error);
@@ -72,27 +94,13 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
   };
 
   React.useEffect(() => {
-    // När selectedLan ändras via dropdown, hämta lat/lon från Nominatim om det inte är "Alla län"
-    const fetchLatLonForLan = async (lan: string) => {
-      try {
-        const response = await fetch(
-          `https://nominatim.openstreetmap.org/search?country=Sweden&county=${encodeURIComponent(lan)}&format=json&limit=1`
-        );
-        const data = await response.json();
-        if (data && data.length > 0) {
-          setLat(parseFloat(data[0].lat));
-          setLon(parseFloat(data[0].lon));
-        }
-      } catch (error) {
-        // Om det blir fel, gör inget
-        console.error('Kunde inte hämta lat/lon för län:', lan, error);
+    if (selectedLan !== 'Alla län') {
+      const coords = LAN_COORDINATES[selectedLan];
+      if (coords) {
+        setLat(coords.lat);
+        setLon(coords.lon);
       }
-    };
-
-    if (selectedLan !== "Alla län") {
-      fetchLatLonForLan(selectedLan);
     }
-    // Om "Alla län" väljs, gör inget (eller sätt default om så önskas)
     // eslint-disable-next-line
   }, [selectedLan]);
 
