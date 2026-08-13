@@ -58,14 +58,14 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
   };
 
   return (
-    <div>
-      <label htmlFor="county-select" style={{ marginRight: '0.5rem' }}>Välj län:</label>
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div className="location-selector">
+      <span className="location-heading">Plats</span>
+      <label className="visually-hidden" htmlFor="county-select">Välj län</label>
+      <div className="location-controls">
         <select
           id="county-select"
           value={selectedLan}
           onChange={(e) => handleLanChange(e.target.value)}
-          style={{ padding: '0.3rem' }}
         >
           <option value={ALL_COUNTIES}>Alla län</option>
           {allLans.map(lan => (
@@ -75,14 +75,13 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
         <button
           type="button"
           onClick={handleUseLocation}
-          style={{ padding: '0.3rem 0.6rem', fontSize: '0.9rem' }}
           title="Använd min plats"
           aria-label="Använd min plats"
         >
-          📍
+          <span aria-hidden="true">⌖</span> Använd min plats
         </button>
       </div>
-      <div style={{ fontSize: '0.9em', color: 'gray', marginTop: 4 }}>
+      <div className="coordinates">
         <span>Lat: {lat.toFixed(4)}, Lon: {lon.toFixed(4)}</span>
       </div>
     </div>

@@ -1,13 +1,11 @@
 import { lazy, Suspense, useState, useEffect } from 'react';
 import './App.scss'
 import Menu from './Menu'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ALL_COUNTIES, COUNTIES, normalizeLanName } from './data/lan';
 
 const JakttiderPage = lazy(() => import('./pages/JakttiderPage'));
-const SoltiderPage = lazy(() => import('./pages/SoltiderPage'));
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -26,36 +24,13 @@ function App() {
   return (
     <BrowserRouter basename="/huntingseasons">
       <Menu />
-      <div style={{ padding: '1rem' }}>
-        <DatePicker
-          selected={selectedDate}
-          onChange={date => setSelectedDate(date || new Date())}
-          dateFormat="yyyy-MM-dd"
-        />
-        <button
-          type="button"
-          style={{ marginLeft: '1rem', padding: '0.3rem 0.8rem' }}
-          onClick={() => setSelectedDate(new Date())}
-        >
-          Idag
-        </button>
+      <main>
         <Suspense fallback={<p role="status">Laddar sidan…</p>}>
           <Routes>
             <Route path="/jakttider" element={
               <JakttiderPage
                 selectedDate={selectedDate}
-                selectedLan={selectedLan}
-                setSelectedLan={setSelectedLan}
-                lat={lat}
-                lon={lon}
-                setLat={setLat}
-                setLon={setLon}
-                allLans={allLans}
-              />
-            } />
-            <Route path="/soltider" element={
-              <SoltiderPage
-                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
                 selectedLan={selectedLan}
                 setSelectedLan={setSelectedLan}
                 lat={lat}
@@ -68,7 +43,7 @@ function App() {
             <Route path="*" element={<Navigate to="/jakttider" replace />} />
           </Routes>
         </Suspense>
-      </div>
+      </main>
     </BrowserRouter>
   );
 }

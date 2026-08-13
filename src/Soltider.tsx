@@ -12,7 +12,7 @@ interface SoltiderProps {
 
 interface MoonData {
     fraction: number,
-    angle: number,
+    phase: number,
 }
 
 
@@ -52,7 +52,7 @@ const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
 
         const moonPos = GetMoonIllumination(calculationDate);
         setMoonData({
-            angle: moonPos.angle,
+            phase: moonPos.phase,
             fraction: moonPos.fraction ?? 0,
         });
     }, [date, lat, lon, timeZone])
@@ -71,7 +71,7 @@ const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <div>
                         <div style={{ height: '100px' }}>
-                            <Moon angle={moonData.angle} phasePercentage={Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100) / 100} />
+                            <Moon phase={moonData.phase ?? 0} fraction={moonData.fraction ?? 0} />
                         </div>
                         <div style={{ color: 'var(--color-text-secondary)', textAlign: 'center' }}>
                             <strong>{Math.round((moonData.fraction != undefined ? moonData.fraction : 0) * 100)}% belyst</strong>
