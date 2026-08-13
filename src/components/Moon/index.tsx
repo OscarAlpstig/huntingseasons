@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error PlanetPhase is a legacy JavaScript component without declarations.
 import PlanetPhase from "./PlanetPhase";
 
 interface MoonProps {
@@ -14,10 +14,8 @@ const Moon = (props: MoonProps) => {
         }
         return isWaxing;
     }
-    // @ts-ignore
     return (
         <div style={{ display: "flex", flexDirection: "row" }}>
-            {/*// @ts-ignore*/}
             <PlanetPhase
                 containerId="container"
                 phase={props.phasePercentage}

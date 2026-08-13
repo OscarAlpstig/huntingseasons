@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Moon from './components/Moon';
-// @ts-ignore
-import { GetMoonIllumination, GetMoonTimes, GetTimes } from "../lib/Suncalc/suncalc";
-import { GetTimeOfDay } from "../lib/utils.ts";
+// @ts-expect-error The legacy SunCalc module has no type declarations.
+import { GetMoonIllumination, GetMoonTimes, GetTimes, GetTimeZone } from "../lib/Suncalc/suncalc";
+import { getDateAtTimeInZone, GetTimeOfDay } from "../lib/utils.ts";
 
 interface SoltiderProps {
     date: Date;
@@ -31,67 +31,40 @@ interface MoonTimes {
 }
 
 const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
+    const timeZone = GetTimeZone(lat, lon);
     const [times, setTimes] = React.useState<Partial<SunTimes>>({});
     const [moonTimes, setMoonTimes] = React.useState<Partial<MoonTimes>>({});
     const [moonData, setMoonData] = React.useState<Partial<MoonData>>({});
 
     useEffect(() => {
-        getSunTimes();
-        getMoonTimes();
-        getMoonData();
-    }, [date, lat, lon])
+        const calculationDate = getDateAtTimeInZone(date, timeZone);
+        const sunTimes = GetTimes(calculationDate, lat, lon);
+        setTimes({
+            sunrise: sunTimes.sunrise,
+            sunset: sunTimes.sunset,
+            dawn: sunTimes.dawn,
+            dusk: sunTimes.dusk,
+        });
 
+        const localMidnight = getDateAtTimeInZone(date, timeZone, 0);
+        const calculatedMoonTimes = GetMoonTimes(localMidnight, lat, lon);
+        setMoonTimes(calculatedMoonTimes);
 
-    const getSunTimes = () => {
-        let times = GetTimes(date, lat, lon);
-        let newTimesObject = {
-            // @ts-ignore
-            sunrise: times.sunrise as DateTime,
-            // @ts-ignore
-            sunset: times.sunset as DateTime,
-            // @ts-ignore
-            dawn: times.dawn as DateTime,
-            // @ts-ignore
-            dusk: times.dusk as DateTime
-        } as SunTimes;
-
-        setTimes(newTimesObject);
-    }
-
-    const getMoonTimes = () => {
-        let times = GetMoonTimes(date, lat, lon);
-
-        let newMoonPos = {
-            rise: times.rise as Date,
-            set: times.set as Date,
-            // @ts-ignore
-            alwaysDown: times.alwaysDown,
-            // @ts-ignore
-            alwaysUp: times.alwaysUp,
-        } as MoonTimes;
-        setMoonTimes(newMoonPos);
-    }
-
-    const getMoonData = () => {
-        let moonPos = GetMoonIllumination(date);
-        let fraction = moonPos.fraction != undefined ? moonPos.fraction : 0;
-        let newMoonPos = {
+        const moonPos = GetMoonIllumination(calculationDate);
+        setMoonData({
             angle: moonPos.angle,
-            fraction: fraction
-        } as MoonData
-
-        setMoonData(newMoonPos);
-        return moonPos;
-    }
+            fraction: moonPos.fraction ?? 0,
+        });
+    }, [date, lat, lon, timeZone])
 
     return (
         <div style={{ marginTop: '2rem' }}>
             <h3>Soltider</h3>
             <div style={{ marginBottom: '1.5rem' }}>
-                <strong>Borgerlig gryning:</strong> {GetTimeOfDay(times.dawn)}<br />
-                <strong>Solupgång:</strong> {GetTimeOfDay(times.sunrise)}<br />
-                <strong>Solnedgång:</strong> {GetTimeOfDay(times.sunset)}<br />
-                <strong>Borgerlig skymning:</strong> {GetTimeOfDay(times.dusk)}<br />
+                <strong>Borgerlig gryning:</strong> {GetTimeOfDay(times.dawn, timeZone)}<br />
+                <strong>Solupgång:</strong> {GetTimeOfDay(times.sunrise, timeZone)}<br />
+                <strong>Solnedgång:</strong> {GetTimeOfDay(times.sunset, timeZone)}<br />
+                <strong>Borgerlig skymning:</strong> {GetTimeOfDay(times.dusk, timeZone)}<br />
             </div>
             <div>
                 <h4>Månen</h4>
@@ -105,8 +78,8 @@ const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
                         </div>
                     </div>
                     <div style={{ marginTop: '1rem' }}>
-                        <strong>Månuppgång:</strong> {moonTimes.alwaysUp ? 'Alltid uppe' : `${GetTimeOfDay(moonTimes.rise)}`}<br />
-                        <strong>Månnedgång:</strong> {moonTimes.alwaysDown ? 'Alltid nere' : `${GetTimeOfDay(moonTimes.set)}`}<br />
+                        <strong>Månuppgång:</strong> {moonTimes.alwaysUp ? 'Alltid uppe' : `${GetTimeOfDay(moonTimes.rise, timeZone)}`}<br />
+                        <strong>Månnedgång:</strong> {moonTimes.alwaysDown ? 'Alltid nere' : `${GetTimeOfDay(moonTimes.set, timeZone)}`}<br />
                     </div>
                 </div>
             </div>
