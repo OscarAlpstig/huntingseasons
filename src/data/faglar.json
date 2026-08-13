@@ -1,42 +1,1964 @@
-[
-  {
-    "art": "Gräsand",
-    "perioder": [
-      {
-        "info": "Vanlig vattenfågel, allmän jaktperiod",
-        "regler": "Endast med tillstånd",
-        "start": {
-          "month": 8,
-          "day": 21,
-          "nextYear": false
+{
+  "version": 2,
+  "source": {
+    "name": "Svenska Jägareförbundet",
+    "url": "https://jagareforbundet.se/jakt/jakttider/",
+    "verifiedDate": "2026-08-13"
+  },
+  "arter": [
+    {
+      "art": "Björktrast",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 6,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt"
+        }
+      ]
+    },
+    {
+      "art": "Bläsand",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-I",
+                "SE-M"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
         },
-        "end": {
-          "month": 12,
-          "day": 31,
-          "nextYear": false
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-AC",
+                "SE-Y",
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Även gränsälvsområdet. Se definition nedan."
         },
-        "lan": [
-          "Alla län"
-        ]
-      },
-      {
-        "info": "Särskild skyddsperiod",
-        "regler": "Endast skyddsjakt tillåten",
-        "start": {
-          "month": 3,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
         },
-        "end": {
-          "month": 4,
-          "day": 31,
-          "nextYear": false
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 24
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Bläsgås",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 1,
+            "day": 1
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-Z",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-BD",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "regler": "Endast skyddsjakt!Se nedan."
         },
-        "lan": [
-          "Skåne",
-          "Blekinge"
-        ]
-      }
-    ]
-  }
-]
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 10,
+            "day": 1
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-M"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Läs mer beträffande skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Dalripa",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-BD",
+                "SE-AC"
+              ]
+            }
+          ],
+          "regler": "Nedanför och ovan lappmarksgränsen"
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 28
+          },
+          "omraden": [
+            {
+              "typ": "kommun",
+              "lanId": "SE-W",
+              "kommuner": [
+                "Älvdalen"
+              ]
+            }
+          ],
+          "regler": "Under skottår gäller även jakttiden 29 februari. 1. Endast Älvdalens kommun."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-X",
+                "SE-S",
+                "SE-Y"
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 28
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-Z"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Under skottår gäller jakttiden även 29 februari."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 2,
+            "day": 16
+          },
+          "end": {
+            "month": 3,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Ovanför lappmarksgränsen"
+            },
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-AC",
+              "beskrivning": "Ovanför lappmarksgränsen"
+            }
+          ],
+          "regler": "Endast ovanför lappmarksgränsen."
+        }
+      ]
+    },
+    {
+      "art": "Ejder",
+      "info": "Ingen allmän jakttid. Jägareförbundet anger att jakten tills vidare har upphört i avvaktan på en förvaltningsplan.",
+      "perioder": []
+    },
+    {
+      "art": "Fasan",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 10,
+            "day": 1
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Fiskmås",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 11
+          },
+          "end": {
+            "month": 2,
+            "day": 28
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Jakttid även 29 februari under skottår."
+        }
+      ]
+    },
+    {
+      "art": "Fjällripa",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-BD",
+                "SE-AC"
+              ]
+            }
+          ],
+          "regler": "Nedanför och ovan lappmarksgränsen"
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 28
+          },
+          "omraden": [
+            {
+              "typ": "kommun",
+              "lanId": "SE-W",
+              "kommuner": [
+                "Älvdalen"
+              ]
+            }
+          ],
+          "regler": "Under skottår gäller även jakttiden 29 februari. 1. Endast Älvdalens kommun."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-X",
+                "SE-S",
+                "SE-Y"
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 2,
+            "day": 28
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-Z"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Under skottår gäller jakttiden även 29 februari."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 2,
+            "day": 16
+          },
+          "end": {
+            "month": 3,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Ovanför lappmarksgränsen"
+            },
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-AC",
+              "beskrivning": "Ovanför lappmarksgränsen"
+            }
+          ],
+          "regler": "Endast ovanför lappmarksgränsen."
+        }
+      ]
+    },
+    {
+      "art": "Grågås",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 11
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-Z",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 11
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Gränsälvsområdet: Från 20 aug kl 11 - 31 jan Torne, Muonio och Könkämä älvar, där dessa utgör gräns mot Finland samt längs dessa älvsträckor ett område på 200 meters bredd räknat från älv- respektive sjöstrand."
+        }
+      ]
+    },
+    {
+      "art": "Gråtrut",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 1
+          },
+          "end": {
+            "month": 3,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Gräsand",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-I",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-AC",
+                "SE-Y",
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Även gränsälvsområdet. Se definition nedan."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 24
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Gränsälvsområdet längs Torne, Muonio och Könkämä älvar"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Enbart Gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Havstrut",
+      "info": "Ingen gällande jaktperiod redovisades på den ordinarie jakttidssidan vid verifieringen.",
+      "perioder": []
+    },
+    {
+      "art": "Järpe",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-S",
+                "SE-AC",
+                "SE-Y"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Kaja",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 4,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 16
+          },
+          "end": {
+            "month": 4,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-Z",
+                "SE-BD",
+                "SE-AC",
+                "SE-Y"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Kanadagås",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 11
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-Z",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 11
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Gränsälvsområdet: Från 20 aug kl 11 - 31 jan Torne, Muonio och Könkämä älvar, där dessa utgör gräns mot Finland samt längs dessa älvsträckor ett område på 200 meters bredd räknat från älv- respektive sjöstrand."
+        }
+      ]
+    },
+    {
+      "art": "Knipa",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Gäller även Gränsälvsområdet. Se definition nedan."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 20
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Gränsälvsområdet längs Torne, Muonio och Könkämä älvar"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Endast gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Korp",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 6,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Kricka",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-I",
+                "SE-M"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-AC",
+                "SE-Y",
+                "SE-BD"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Även gränsälvsområdet. Se definition nedan."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 24
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Gränsälvsområdet längs Torne, Muonio och Könkämä älvar"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "1. Endast gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Kråka",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 4,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 16
+          },
+          "end": {
+            "month": 4,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-Z",
+                "SE-BD",
+                "SE-AC",
+                "SE-Y"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Morkulla",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 9,
+            "day": 11
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Nötskrika",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 3,
+            "day": 10
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Orre",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 9,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-O",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 1,
+            "day": 1
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-O",
+                "SE-E",
+                "SE-M"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast orrtupp"
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-T"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 11,
+            "day": 16
+          },
+          "end": {
+            "month": 2,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-T"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast orrtupp."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 9,
+            "day": 1
+          },
+          "end": {
+            "month": 9,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-M"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast orrtupp."
+        }
+      ]
+    },
+    {
+      "art": "Rapphöna",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 9,
+            "day": 16
+          },
+          "end": {
+            "month": 11,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Ringduva",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 16
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-I",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 1
+          },
+          "end": {
+            "month": 12,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-AC",
+                "SE-Y"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Råka",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 21
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-N",
+                "SE-M"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Sjöorre",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 9,
+            "day": 21
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          }
+        }
+      ]
+    },
+    {
+      "art": "Skata",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 4,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-W",
+                "SE-I",
+                "SE-X",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-M",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-U",
+                "SE-O",
+                "SE-T",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 7,
+            "day": 16
+          },
+          "end": {
+            "month": 4,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-Z",
+                "SE-BD",
+                "SE-AC",
+                "SE-Y"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        }
+      ]
+    },
+    {
+      "art": "Småskrake",
+      "info": "Ingen gällande jaktperiod redovisades på den ordinarie jakttidssidan vid verifieringen.",
+      "perioder": []
+    },
+    {
+      "art": "Storskarv",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 6,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Storskrake",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Gäller även Gränsälvsområdet. Se definition nedan."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 20
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Gränsälvsområdet längs Torne, Muonio och Könkämä älvar"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Endast gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Sångsvan",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 10,
+            "day": 1
+          },
+          "end": {
+            "month": 3,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Sädgås",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 4,
+            "day": 21
+          },
+          "end": {
+            "month": 2,
+            "day": 20
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-M"
+              ]
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Tjäder",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 9,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-O",
+                "SE-E"
+              ]
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          }
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 1,
+            "day": 1
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-K",
+                "SE-N",
+                "SE-F",
+                "SE-H",
+                "SE-G",
+                "SE-O",
+                "SE-E",
+                "SE-M"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast tjädertupp."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 25
+          },
+          "end": {
+            "month": 11,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-T"
+              ]
+            }
+          ],
+          "regler": "Alla fåglar."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 11,
+            "day": 16
+          },
+          "end": {
+            "month": 2,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-W",
+                "SE-X",
+                "SE-Z",
+                "SE-BD",
+                "SE-AB",
+                "SE-D",
+                "SE-C",
+                "SE-S",
+                "SE-AC",
+                "SE-Y",
+                "SE-U",
+                "SE-T"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast tjädertupp."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 9,
+            "day": 1
+          },
+          "end": {
+            "month": 9,
+            "day": 15
+          },
+          "omraden": [
+            {
+              "typ": "lan",
+              "ids": [
+                "SE-M"
+              ]
+            }
+          ],
+          "djur": [
+            "tupp"
+          ],
+          "tidPaDygnet": {
+            "typ": "dygnetRunt"
+          },
+          "regler": "Endast tjädertupp."
+        }
+      ]
+    },
+    {
+      "art": "Trana",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 4,
+            "day": 1
+          },
+          "end": {
+            "month": 5,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        },
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 8,
+            "day": 1
+          },
+          "end": {
+            "month": 9,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Enbart skyddsjakt."
+        }
+      ]
+    },
+    {
+      "art": "Vigg",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 21
+          },
+          "end": {
+            "month": 1,
+            "day": 31
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Gäller även Gränsälvsområdet. Se definition nedan."
+        },
+        {
+          "typ": "allmanJakt",
+          "start": {
+            "month": 8,
+            "day": 20
+          },
+          "end": {
+            "month": 8,
+            "day": 20
+          },
+          "omraden": [
+            {
+              "typ": "delAvLan",
+              "lanId": "SE-BD",
+              "beskrivning": "Gränsälvsområdet längs Torne, Muonio och Könkämä älvar"
+            }
+          ],
+          "tidPaDygnet": {
+            "typ": "sol",
+            "foreSoluppgangMinuter": 60,
+            "efterSolnedgangMinuter": 60
+          },
+          "regler": "Endast gränsälvsområdet. Se definition nedan."
+        }
+      ]
+    },
+    {
+      "art": "Vitkindad gås",
+      "perioder": [
+        {
+          "typ": "skyddsjakt",
+          "start": {
+            "month": 7,
+            "day": 1
+          },
+          "end": {
+            "month": 6,
+            "day": 30
+          },
+          "omraden": [
+            {
+              "typ": "helaLandet"
+            }
+          ],
+          "regler": "Endast skyddsjakt."
+        }
+      ]
+    }
+  ]
+}

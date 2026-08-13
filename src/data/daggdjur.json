@@ -1,861 +1,281 @@
-[
-  {
-    "art": "Bäver",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "tidPaDygnet": "dygnet runt",
-        "regler": "",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 5,
-          "day": 10,
-          "nextYear": true
-        },
-        "lan": [
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      },
-      {
-        "info": "Allmän jakt",
-        "tidPaDygnet": "dygnet runt",
-        "regler": "",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 5,
-          "day": 15,
-          "nextYear": true
-        },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten"
-        ]
-      }
-    ]
+{
+  "version": 2,
+  "source": {
+    "name": "Svenska Jägareförbundet – Jakttider",
+    "url": "https://jagareforbundet.se/jakt/jakttider/",
+    "verifiedDate": "2026-08-13"
   },
-  {
-    "art": "Dovhjort",
-    "perioder": [
-      {
-        "info": "",
-        "tidPaDygnet": "Från en timme före soluppgång till en timme efter solnedgång. Under timmen efter solnedgång är det endast tillåtet att smyg- och vaktjaga.",
-        "regler": "Alla djur",
-        "start": {
-          "month": 11,
-          "day": 16,
-          "nextYear": false
+  "arter": [
+    {
+      "art": "Björn",
+      "info": "Ingen allmän jakttid. Licensjakt beslutas särskilt och kan avbrytas när tilldelningen är fylld.",
+      "perioder": [
+        {
+          "typ": "licensjakt",
+          "start": { "month": 8, "day": 21 },
+          "end": { "month": 10, "day": 15 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-W", "SE-X", "SE-Z", "SE-BD", "SE-S", "SE-AC", "SE-Y"] }],
+          "regler": "Ingen allmän jakttid. Endast licensjakt; kontrollera aktuellt beslut och återstående tilldelning.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": -120 },
+          "lokaltBeslut": true
+        }
+      ]
+    },
+    {
+      "art": "Bäver",
+      "perioder": [
+        {
+          "typ": "allmanJakt",
+          "start": { "month": 10, "day": 1 },
+          "end": { "month": 5, "day": 10 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-K", "SE-I", "SE-N", "SE-F", "SE-H", "SE-G", "SE-M", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "tidPaDygnet": { "typ": "dygnetRunt" }
         },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
+        {
+          "typ": "allmanJakt",
+          "start": { "month": 10, "day": 1 },
+          "end": { "month": 5, "day": 15 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-W", "SE-X", "SE-Z", "SE-BD", "SE-AC", "SE-Y"] }],
+          "tidPaDygnet": { "typ": "dygnetRunt" }
+        }
+      ]
+    },
+    {
+      "art": "Dovhjort",
+      "perioder": [
+        {
+          "typ": "allmanJakt", "djur": ["hornbarande", "kalv"],
+          "start": { "month": 9, "day": 1 }, "end": { "month": 9, "day": 30 },
+          "omraden": [{ "typ": "helaLandet" }], "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      },
-      {
-        "info": "",
-        "tidPaDygnet": "Från en timme före soluppgång till en timme efter solnedgång. Under timmen efter solnedgång är det endast tillåtet att smyg- och vaktjaga.",
-        "regler": "Endast hornbärande djur och kalv. Endast tillåtet att smyg- och vaktjaga.",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["alla"],
+          "start": { "month": 10, "day": 1 }, "end": { "month": 10, "day": 20 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 9,
-          "day": 30,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hind", "kalv"],
+          "start": { "month": 10, "day": 21 }, "end": { "month": 11, "day": 15 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      },
-      {
-        "info": "",
-        "regler": "Alla djur",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["alla"],
+          "start": { "month": 11, "day": 16 }, "end": { "month": 2, "day": 28 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "regler": "Slutdatum är 29 februari under skottår.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 10,
-          "day": 20,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hind", "kalv"],
+          "start": { "month": 3, "day": 1 }, "end": { "month": 3, "day": 31 },
+          "omraden": [{ "typ": "helaLandet" }], "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
+        }
+      ]
+    },
+    {
+      "art": "Fälthare",
+      "perioder": [{
+        "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 2, "day": 28 },
+        "omraden": [{ "typ": "helaLandet" }], "regler": "Slutdatum är 29 februari under skottår."
+      }]
+    },
+    {
+      "art": "Grävling",
+      "perioder": [{
+        "typ": "allmanJakt", "start": { "month": 8, "day": 1 }, "end": { "month": 1, "day": 31 },
+        "omraden": [{ "typ": "helaLandet" }], "tidPaDygnet": { "typ": "dygnetRunt" }
+      }]
+    },
+    {
+      "art": "Iller",
+      "perioder": [{
+        "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 2, "day": 28 },
+        "omraden": [{ "typ": "helaLandet" }], "regler": "Slutdatum är 29 februari under skottår."
+      }]
+    },
+    {
+      "art": "Kronhjort",
+      "info": "Reglerna skiljer mellan registrerade kronhjortsskötselområden, oregistrerad mark och Skånes kronhjortsområden.",
+      "perioder": [
+        {
+          "typ": "allmanJakt", "djur": ["hind", "arskalv"],
+          "start": { "month": 8, "day": 16 }, "end": { "month": 9, "day": 30 },
+          "omraden": [{ "typ": "kronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      },
-      {
-        "info": "",
-        "regler": "Endast hind och kalv",
-        "start": {
-          "month": 10,
-          "day": 21,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hind", "arskalv"],
+          "start": { "month": 10, "day": 1 }, "end": { "month": 10, "day": 7 },
+          "omraden": [{ "typ": "kronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 11,
-          "day": 15,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["alla"],
+          "start": { "month": 10, "day": 8 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "kronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      },
-      {
-        "info": "",
-        "regler": "Endast hind och kalv. Det är endast tillåtet att smyg- och vaktjaga.",
-        "start": {
-          "month": 3,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hind", "arskalv"],
+          "start": { "month": 2, "day": 1 }, "end": { "month": 2, "day": 28 },
+          "omraden": [{ "typ": "kronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "jaktformer": ["smygjakt", "vaktjakt"], "regler": "Slutdatum är 29 februari under skottår.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 3,
-          "day": 31,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["arskalv"],
+          "start": { "month": 8, "day": 16 }, "end": { "month": 9, "day": 30 },
+          "omraden": [{ "typ": "utanforKronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge",
-          "Skåne"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Rådjur",
-    "perioder": [
-      {
-        "info": "Får jagas under höst och vinter",
-        "regler": "Endast vuxna djur tillåtna",
-        "start": {
-          "month": 10,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["arskalv"],
+          "start": { "month": 10, "day": 1 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "utanforKronhjortsskotselomrade", "lanIds": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-Z", "SE-F", "SE-H", "SE-G", "SE-BD", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 1,
-          "day": 31,
-          "nextYear": true
+        {
+          "typ": "sarskildJakttid", "start": { "month": 10, "day": 8 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "kronhjortsomrade", "lanIds": ["SE-M"] }],
+          "regler": "Endast licensjakt. Länsstyrelsen beslutar årligen jakttiden inom ramen.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
         },
-        "lan": [
-          "Stockholm",
-          "Uppsala",
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Kalv får jagas under särskild period",
-        "regler": "Endast kalv tillåten",
-        "start": {
-          "month": 9,
-          "day": 16,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "start": { "month": 10, "day": 8 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "utanforKronhjortsomrade", "lanIds": ["SE-M"] }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
+        }
+      ]
+    },
+    {
+      "art": "Mink",
+      "perioder": [{
+        "typ": "skyddsjakt", "start": { "month": 7, "day": 1 }, "end": { "month": 6, "day": 30 },
+        "omraden": [{ "typ": "helaLandet" }], "regler": "Endast skyddsjakt enligt villkoren i jaktförordningen."
+      }]
+    },
+    {
+      "art": "Mård",
+      "perioder": [
+        {
+          "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 2, "day": 28 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-K", "SE-I", "SE-N", "SE-F", "SE-H", "SE-G", "SE-M", "SE-AB", "SE-D", "SE-C", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "regler": "Slutdatum är 29 februari under skottår."
         },
-        "end": {
-          "month": 10,
-          "day": 30,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 3, "day": 31 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-W", "SE-X", "SE-Z", "SE-BD", "SE-S", "SE-AC", "SE-Y"] }]
+        }
+      ]
+    },
+    {
+      "art": "Rådjur",
+      "perioder": [
+        {
+          "typ": "allmanJakt", "djur": ["hornbarande"], "start": { "month": 5, "day": 1 }, "end": { "month": 6, "day": 15 },
+          "omraden": [{ "typ": "helaLandet" }], "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Stockholm"
-        ]
-      },
-      {
-        "info": "Vårbock",
-        "regler": "Endast hornbärande handjur (bock)",
-        "start": {
-          "month": 5,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hornbarande"], "start": { "month": 8, "day": 16 }, "end": { "month": 8, "day": 31 },
+          "omraden": [{ "typ": "helaLandet" }], "jaktformer": ["smygjakt", "vaktjakt"],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "end": {
-          "month": 6,
-          "day": 15,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["hornbarande", "kid"], "start": { "month": 9, "day": 1 }, "end": { "month": 9, "day": 30 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
         },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Bockjakt",
-        "regler": "Endast hornbärande handjur (bock)",
-        "start": {
-          "month": 8,
-          "day": 16,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["alla"], "start": { "month": 10, "day": 1 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }
+        }
+      ]
+    },
+    {
+      "art": "Rödräv",
+      "perioder": [
+        { "typ": "allmanJakt", "start": { "month": 8, "day": 1 }, "end": { "month": 2, "day": 28 }, "omraden": [{ "typ": "lan", "ids": ["SE-K", "SE-N", "SE-M"] }], "regler": "Slutdatum är 29 februari under skottår." },
+        { "typ": "allmanJakt", "start": { "month": 8, "day": 1 }, "end": { "month": 3, "day": 15 }, "omraden": [{ "typ": "lan", "ids": ["SE-I", "SE-F", "SE-H", "SE-G", "SE-AB", "SE-D", "SE-C", "SE-U", "SE-O", "SE-E"] }] },
+        { "typ": "allmanJakt", "start": { "month": 8, "day": 1 }, "end": { "month": 3, "day": 31 }, "omraden": [{ "typ": "lan", "ids": ["SE-W", "SE-X", "SE-S", "SE-T"] }] },
+        { "typ": "allmanJakt", "start": { "month": 8, "day": 1 }, "end": { "month": 4, "day": 15 }, "omraden": [{ "typ": "lan", "ids": ["SE-Z", "SE-BD", "SE-AC", "SE-Y"] }] },
+        { "typ": "allmanJakt", "start": { "month": 4, "day": 1 }, "end": { "month": 4, "day": 15 }, "omraden": [{ "typ": "kommun", "lanId": "SE-W", "kommuner": ["Älvdalen"] }], "regler": "Den förlängda tiden gäller endast Älvdalens kommun." }
+      ]
+    },
+    {
+      "art": "Skogshare",
+      "perioder": [
+        { "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 2, "day": 15 }, "omraden": [{ "typ": "lan", "ids": ["SE-K", "SE-I", "SE-N", "SE-F", "SE-H", "SE-G", "SE-M", "SE-D", "SE-O", "SE-E"] }] },
+        { "typ": "allmanJakt", "start": { "month": 9, "day": 1 }, "end": { "month": 2, "day": 28 }, "omraden": [{ "typ": "lan", "ids": ["SE-W", "SE-X", "SE-Z", "SE-BD", "SE-AB", "SE-C", "SE-S", "SE-AC", "SE-Y", "SE-U", "SE-T"] }], "regler": "Slutdatum är 29 februari under skottår." }
+      ]
+    },
+    {
+      "art": "Vessla",
+      "perioder": [{ "typ": "skyddsjakt", "start": { "month": 7, "day": 1 }, "end": { "month": 6, "day": 30 }, "omraden": [{ "typ": "helaLandet" }], "regler": "Endast skyddsjakt enligt villkoren i jaktförordningen." }]
+    },
+    {
+      "art": "Vildkanin",
+      "perioder": [{ "typ": "skyddsjakt", "start": { "month": 7, "day": 1 }, "end": { "month": 6, "day": 30 }, "omraden": [{ "typ": "helaLandet" }], "regler": "Endast skyddsjakt enligt villkoren i jaktförordningen." }]
+    },
+    {
+      "art": "Vildsvin",
+      "perioder": [
+        {
+          "typ": "allmanJakt", "djur": ["alla"], "start": { "month": 4, "day": 1 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "helaLandet" }],
+          "regler": "Sugga som följs av randiga eller bruna små kultingar är fredad hela året. Hund som förföljer vildsvin får användas 1 augusti–31 januari."
         },
-        "end": {
-          "month": 9,
-          "day": 30,
-          "nextYear": false
+        {
+          "typ": "allmanJakt", "djur": ["arsunge"], "start": { "month": 2, "day": 1 }, "end": { "month": 3, "day": 31 },
+          "omraden": [{ "typ": "helaLandet" }], "regler": "Hund som förföljer vildsvin får inte användas efter 31 januari."
+        }
+      ]
+    },
+    {
+      "art": "Älg",
+      "info": "Lokala variationer förekommer. Länsstyrelsens årliga beslut anger exakta tider och villkor.",
+      "perioder": [
+        {
+          "typ": "sarskildJakttid", "start": { "month": 10, "day": 8 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-K", "SE-W", "SE-I", "SE-X", "SE-N", "SE-F", "SE-H", "SE-G", "SE-M", "SE-AB", "SE-D", "SE-C", "SE-S", "SE-U", "SE-O", "SE-T", "SE-E"] }],
+          "regler": "Kontrollera länsstyrelsens årliga beslut för exakt jakttid.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
         },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Vildsvin",
-    "perioder": [
-      {
-        "info": "Får jagas året runt",
-        "regler": "Alla åldrar tillåtna",
-        "start": {
-          "month": 1,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "sarskildJakttid", "start": { "month": 9, "day": 1 }, "end": { "month": 1, "day": 31 },
+          "omraden": [{ "typ": "lan", "ids": ["SE-Z", "SE-BD", "SE-AC", "SE-Y"] }],
+          "regler": "Kontrollera länsstyrelsens årliga beslut för exakt jakttid.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
         },
-        "end": {
-          "month": 12,
-          "day": 31,
-          "nextYear": false
+        {
+          "typ": "sarskildJakttid", "start": { "month": 9, "day": 1 }, "end": { "month": 10, "day": 7 },
+          "omraden": [
+            { "typ": "kommun", "lanId": "SE-W", "kommuner": ["Malung-Sälen", "Orsa", "Rättvik", "Älvdalen"] },
+            { "typ": "delAvLan", "lanId": "SE-W", "beskrivning": "de delar av Mora kommun som ligger norr om sjön Siljan samt norr om väg 45 väster om tätorten Mora" }
+          ],
+          "regler": "Begränsat område. Kontrollera länsstyrelsens årliga beslut.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
         },
-        "lan": [
-          "Alla län"
-        ]
-      },
-      {
-        "info": "Särskild period för årsunge",
-        "regler": "Endast årsunge tillåten",
-        "start": {
-          "month": 6,
-          "day": 1,
-          "nextYear": false
+        {
+          "typ": "sarskildJakttid", "start": { "month": 9, "day": 1 }, "end": { "month": 10, "day": 7 },
+          "omraden": [{ "typ": "kommun", "lanId": "SE-X", "kommuner": ["Ljusdal", "Ovanåker", "Hudiksvall", "Nordanstig"] }],
+          "regler": "Begränsat område. Kontrollera länsstyrelsens årliga beslut.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
         },
-        "end": {
-          "month": 8,
-          "day": 31,
-          "nextYear": false
-        },
-        "lan": [
-          "Skåne",
-          "Blekinge"
-        ]
-      },
-      {
-        "info": "Årsunge",
-        "regler": "Endast årsunge",
-        "start": {
-          "month": 2,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 3,
-          "day": 31,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Fälthare",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Grävling",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 8,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 1,
-          "day": 31,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Iller",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Kronhjort",
-    "perioder": [
-      {
-        "info": "Inom kronhjortsskötselområde",
-        "regler": "Endast hind och årskalv tillåtna. Till och med 30 september är det endast tillåtet att smyg- eller vaktjaga.",
-        "start": {
-          "month": 8,
-          "day": 16,
-          "nextYear": false
-        },
-        "end": {
-          "month": 7,
-          "day": 10,
-          "nextYear": false
-        },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge"
-        ]
-      },
-      {
-        "info": "Inom kronhjortsskötselområde",
-        "regler": "Alla djur",
-        "start": {
-          "month": 10,
-          "day": 8,
-          "nextYear": false
-        },
-        "end": {
-          "month": 1,
-          "day": 31,
-          "nextYear": true
-        },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge"
-        ]
-      },
-      {
-        "info": "Inom kronhjortsskötselområde",
-        "regler": "Endast hind och årskalv tillåtna. Det är endast tillåtet att smyg- eller vaktjaga.",
-        "start": {
-          "month": 2,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": false
-        },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge"
-        ]
-      },
-      {
-        "info": "Utanför kronhjortsskötselområde",
-        "regler": "Endast årskalv tillåten. Till och med 30 september är det endast tillåtet att smyg- eller vaktjaga",
-        "start": {
-          "month": 8,
-          "day": 16,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten",
-          "Uppsala",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
-          "Stockholm",
-          "Södermanland",
-          "Östergötland",
-          "Västra götaland",
-          "Jönköping",
-          "Halland",
-          "Kronoberg",
-          "Gotland",
-          "Kalmar",
-          "Blekinge"
-        ]
-      },
-      {
-        "info": "Inom kronhjortsområde: Endast licensjakt. Utanför kronhjortsområde",
-        "regler": "Länsstyrelsen beslutar årligen jakttiden till en eller flera perioder under tiden\n",
-        "start": {
-          "month": 10,
-          "day": 8,
-          "nextYear": false
-        },
-        "end": {
-          "month": 1,
-          "day": 31,
-          "nextYear": true
-        },
-        "lan": [
-          "Skåne"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Mink",
-    "perioder": [
-      {
-        "info": "Skyddsjakt",
-        "regler": "",
-        "start": {
-          "month": 7,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 6,
-          "day": 30,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Mufflonfår",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 1,
-          "day": 31,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      },
-      {
-        "info": "Vårjakt",
-        "regler": "",
-        "start": {
-          "month": 2,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 3,
-          "day": 31,
-          "nextYear": false
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Mård",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Mårdhund",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 8,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 4,
-          "day": 15,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Rödräv",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 8,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 3,
-          "day": 15,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Skogshare",
-    "perioder": [
-      {
-        "info": "",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 15,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland",
-          "Västragötaland",
-          "Östergötland",
-          "Jönköping",
-          "Kalmar",
-          "Kronoberg",
-          "Blekinge",
-          "Skåne",
-          "Halland",
-          "Gotland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Fälthare",
-    "perioder": [
-      {
-        "info": "",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland",
-          "Västragötaland",
-          "Östergötland",
-          "Jönköping",
-          "Kalmar",
-          "Kronoberg",
-          "Blekinge",
-          "Skåne",
-          "Halland",
-          "Gotland"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Hare",
-    "perioder": [
-      {
-        "info": "Fälthare och skogshare",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Stockholm",
-          "Uppsala",
-          "Västmanland",
-          "Örebro",
-          "Värmland",
-          "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
-          "Norrbotten"
-        ]
-      }
-    ]
-  },
-  {
-    "art": "Vildkanin",
-    "perioder": [
-      {
-        "info": "Allmän jakt",
-        "regler": "",
-        "start": {
-          "month": 9,
-          "day": 1,
-          "nextYear": false
-        },
-        "end": {
-          "month": 2,
-          "day": 28,
-          "nextYear": true
-        },
-        "lan": [
-          "Södermanland"
-        ]
-      }
-    ]
-  }
-]
+        {
+          "typ": "sarskildJakttid", "start": { "month": 9, "day": 1 }, "end": { "month": 10, "day": 7 },
+          "omraden": [{ "typ": "kommun", "lanId": "SE-S", "kommuner": ["Torsby"] }],
+          "regler": "Begränsat område. Kontrollera länsstyrelsens årliga beslut.",
+          "tidPaDygnet": { "typ": "sol", "foreSoluppgangMinuter": 60, "efterSolnedgangMinuter": 60 }, "lokaltBeslut": true
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import { ALL_COUNTIES, LAN_DATA } from '../../data/lan';
 
 const allLans = LAN_DATA.map((county) => county.id);
 
-function renderSelector(selectedLan = 'Stockholm') {
+function renderSelector(selectedLan = 'SE-AB') {
   const props = {
     selectedLan,
     setSelectedLan: vi.fn(),
@@ -32,10 +32,10 @@ describe('LocationSelector', () => {
     const { props } = renderSelector();
 
     fireEvent.change(screen.getByRole('combobox', { name: /välj län/i }), {
-      target: { value: 'Skåne' },
+      target: { value: 'SE-M' },
     });
 
-    expect(props.setSelectedLan).toHaveBeenCalledWith('Skåne');
+    expect(props.setSelectedLan).toHaveBeenCalledWith('SE-M');
     expect(props.setLat).toHaveBeenCalledWith(55.9903);
     expect(props.setLon).toHaveBeenCalledWith(13.5958);
   });
@@ -66,14 +66,14 @@ describe('LocationSelector', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /använd min plats/i }));
 
-    await waitFor(() => expect(props.setSelectedLan).toHaveBeenCalledWith('Stockholm'));
+    await waitFor(() => expect(props.setSelectedLan).toHaveBeenCalledWith('SE-AB'));
     expect(props.setLat).toHaveBeenCalledTimes(1);
     expect(props.setLat).toHaveBeenCalledWith(latitude);
     expect(props.setLon).toHaveBeenCalledTimes(1);
     expect(props.setLon).toHaveBeenCalledWith(longitude);
 
-    rerender(<LocationSelector {...props} selectedLan="Stockholm" lat={latitude} lon={longitude} />);
-    expect(screen.getByRole('combobox', { name: /välj län/i })).toHaveValue('Stockholm');
+    rerender(<LocationSelector {...props} selectedLan="SE-AB" lat={latitude} lon={longitude} />);
+    expect(screen.getByRole('combobox', { name: /välj län/i })).toHaveValue('SE-AB');
     expect(props.setLat).toHaveBeenCalledTimes(1);
     expect(props.setLon).toHaveBeenCalledTimes(1);
   });

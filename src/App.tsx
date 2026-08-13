@@ -4,8 +4,7 @@ import Menu from './Menu'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { getFaglarList, getDaggdjurList } from './data/jaktTiderLoader';
-import { ALL_COUNTIES, normalizeLanName } from './data/lan';
+import { ALL_COUNTIES, COUNTIES, normalizeLanName } from './data/lan';
 
 const JakttiderPage = lazy(() => import('./pages/JakttiderPage'));
 const SoltiderPage = lazy(() => import('./pages/SoltiderPage'));
@@ -22,12 +21,7 @@ function App() {
     localStorage.setItem('selectedLan', selectedLan);
   }, [selectedLan]);
 
-  const allLans = Array.from(new Set([
-    ...getFaglarList(),
-    ...getDaggdjurList()
-  ].flatMap(row => row.lan)))
-    .filter(lan => lan !== ALL_COUNTIES)
-    .sort();
+  const allLans = COUNTIES.map((county) => county.id);
 
   return (
     <BrowserRouter basename="/huntingseasons">

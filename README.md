@@ -30,6 +30,7 @@ Applikationen öppnas på [http://localhost:5173](http://localhost:5173). Ändri
 | `npm run build` | Bygger applikationen för produktion (output i `dist/`) |
 | `npm run preview` | Förhandsgranskar produktionsbygget lokalt |
 | `npm run lint` | Kör ESLint på hela projektet |
+| `npm test` | Kör automatiserade tester och datavalidering |
 
 ---
 
@@ -105,6 +106,47 @@ export default defineConfig([
 ])
 ```
 
+## Datamodell för jakttider
+
+Sveriges län definieras centralt i `src/data/lan.ts`. Logiken använder stabila
+ISO 3166-2-ID:n, exempelvis `SE-AB` för Stockholms län. Namn och äldre alias
+används bara vid visning och migrering av sparade inställningar.
+
+Jakttidsfilerna innehåller källmetadata och en lista av arter med strukturerade
+perioder. Varje period har start/slut som månad och dag, geografiska områden och
+kan dessutom ange djurkategorier, jaktformer samt begränsning efter soltid.
+
+`nextYear` används inte. Om slutets månad/dag ligger före startens månad/dag
+tolkas perioden automatiskt som en period över årsskiftet.
+
+### Geografier
+
+- `helaLandet` gäller utan 21 länsdubbletter.
+- `lan` innehåller en grupp ISO-ID:n.
+- `kommun` beskriver namngivna kommuner inom ett län.
+- `delAvLan` bevarar en geografisk del som inte kan uttryckas som en hel kommun.
+- Kronhjort har separata typer för kronhjortsskötselområde, kronhjortsområde
+  och mark utanför dessa områden.
+
+När användaren endast har valt län visas mer precisa regler som lokala undantag.
+UI:t påstår då inte att regeln gäller i hela länet, utan ber användaren
+kontrollera den exakta jaktplatsen.
+
+### Uppdatera jakttider
+
+1. Kontrollera den ordinarie sidan [Svenska Jägareförbundet – Jakttider](https://jagareforbundet.se/jakt/jakttider/)
+   för samtliga 21 län. Använd inte förslag från pågående översyner som gällande data.
+2. Uppdatera `verifiedDate` och berörda perioder.
+3. Återanvänd `helaLandet` eller länsgrupper när regeln är identisk.
+4. Bevara kommunala och andra lokala avgränsningar; förenkla dem inte till län.
+5. Kör `npm test`, `npm run lint` och `npm run build`.
+
+Datavalideringen kontrollerar datum, län-ID:n, områdestyper, djurkategorier,
+jaktformer och identiska dubbletter.
+
+Verifieringsprotokoll finns för både [däggdjur](docs/daggdjur-verifiering-2026-08-13.md)
+och [fåglar](docs/faglar-verifiering-2026-08-13.md).
+
 ## Färgskala
 
 | Användning                | Färg (HEX) | Beskrivning                                              | Exempel |
@@ -116,4 +158,3 @@ export default defineConfig([
 | Neutral status            | `#264D26`  | Mörkare grön för neutrala element                        | <span style="background:#264D26;border:1px solid #A7C7A7;padding:0.2em 1em;">&nbsp;</span> |
 | Negativa indikatorer      | `#6B8E23`  | Ockragrön för varning eller minskning, ändå naturlig      | <span style="color:#6B8E23;">Exempeltext</span> |
 | Knappar/brytare           | `#896A58`  | En mättad, djupare grön för klickbara element            | <span style="background:#896A58;color:#E6F2E6;padding:0.2em 1em;">Knapp</span> |
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ALL_COUNTIES, findNearestLan, getLanCoordinates, normalizeLanName } from '../../data/lan';
+import { ALL_COUNTIES, findNearestLan, getCountyDisplayName, getLanCoordinates, normalizeLanName } from '../../data/lan';
 
 interface LocationSelectorProps {
   selectedLan: string;
@@ -67,9 +67,9 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
           onChange={(e) => handleLanChange(e.target.value)}
           style={{ padding: '0.3rem' }}
         >
-          <option value={ALL_COUNTIES}>{ALL_COUNTIES}</option>
+          <option value={ALL_COUNTIES}>Alla län</option>
           {allLans.map(lan => (
-            <option key={lan} value={lan}>{lan}</option>
+            <option key={lan} value={lan}>{getCountyDisplayName(lan)}</option>
           ))}
         </select>
         <button
