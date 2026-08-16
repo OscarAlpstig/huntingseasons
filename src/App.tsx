@@ -27,7 +27,7 @@ function App() {
       <main>
         <Suspense fallback={<p role="status">Laddar sidan…</p>}>
           <Routes>
-            <Route path="/jakttider" element={
+            <Route path="/" element={
               <JakttiderPage
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
@@ -40,7 +40,7 @@ function App() {
                 allLans={allLans}
               />
             } />
-            <Route path="*" element={<Navigate to="/jakttider" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </main>

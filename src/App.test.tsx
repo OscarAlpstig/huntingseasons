@@ -19,29 +19,29 @@ function renderAt(path: string) {
 
 describe('lazy-loaded routes', () => {
   it('laddar jakttidssidan på direktnavigering', async () => {
-    renderAt('/jakttider');
+    renderAt('/');
 
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
-    expect(window.location.pathname).toBe('/huntingseasons/jakttider');
+    expect(window.location.pathname).toBe('/huntingseasons/');
   });
 
   it('har integrerat soltider på jakttidssidan', async () => {
-    renderAt('/jakttider');
+    renderAt('/');
     await screen.findByRole('heading', { name: 'Jakttider' });
     expect(screen.queryByRole('link', { name: 'Soltider' })).not.toBeInTheDocument();
     expect(screen.getByLabelText('Sol- och måntider för vald dag')).toBeInTheDocument();
   });
 
-  it('omdirigerar den gamla soltidsrouten till jakttider', async () => {
+  it('omdirigerar den gamla soltidsrouten till basrouten', async () => {
     renderAt('/soltider');
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
-    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons/jakttider'));
+    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons'));
   });
 
   it('omdirigerar en okänd route till den lazy-laddade jakttidssidan', async () => {
     renderAt('/saknas');
 
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
-    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons/jakttider'));
+    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons'));
   });
 });
