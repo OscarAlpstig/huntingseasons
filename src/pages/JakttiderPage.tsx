@@ -9,8 +9,9 @@ import Moon from '../components/Moon';
 import { getMoonPhaseName } from '../components/Moon/moonPhase';
 import { SolarIcon } from '../components/SolarIcon/SolarIcon';
 // @ts-expect-error Legacy module without type declarations.
-import { GetMoonIllumination, GetMoonTimes, GetTimes, GetTimeZone } from '../../lib/Suncalc/suncalc';
+import { GetMoonIllumination, GetMoonTimes } from '../../lib/Suncalc/suncalc';
 import { getDateAtTimeInZone, GetTimeOfDay } from '../../lib/utils';
+import { calculateSolarTimes } from '../../lib/solarTimes';
 
 interface Props {
   selectedDate: Date;
@@ -38,9 +39,7 @@ const JakttiderPage = ({ selectedDate, setSelectedDate, selectedLan, setSelected
     return areaMatch === 'ingen' ? [] : [{ ...row, areaMatch }];
   }), [birds, mammals, selectedDate, selectedLan]);
 
-  const timeZone = GetTimeZone(lat, lon);
-  const sun = GetTimes(getDateAtTimeInZone(selectedDate, timeZone), lat, lon);
-  const calculationDate = getDateAtTimeInZone(selectedDate, timeZone);
+  const { calculationDate, timeZone, times: sun } = calculateSolarTimes(selectedDate, lat, lon);
   const moon = GetMoonIllumination(calculationDate);
   const moonTimes = GetMoonTimes(getDateAtTimeInZone(selectedDate, timeZone, 0), lat, lon);
   const moonRise = moonTimes.alwaysUp ? 'Alltid uppe' : moonTimes.alwaysDown ? 'Alltid nere' : GetTimeOfDay(moonTimes.rise, timeZone);

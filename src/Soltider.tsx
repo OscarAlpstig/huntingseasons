@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Moon from './components/Moon';
 // @ts-expect-error The legacy SunCalc module has no type declarations.
-import { GetMoonIllumination, GetMoonTimes, GetTimes, GetTimeZone } from "../lib/Suncalc/suncalc";
+import { GetMoonIllumination, GetMoonTimes } from "../lib/Suncalc/suncalc";
 import { getDateAtTimeInZone, GetTimeOfDay } from "../lib/utils.ts";
+import { calculateSolarTimes } from "../lib/solarTimes.ts";
 
 interface SoltiderProps {
     date: Date;
@@ -31,14 +32,13 @@ interface MoonTimes {
 }
 
 const Soltider: React.FC<SoltiderProps> = ({ date, lat, lon }) => {
-    const timeZone = GetTimeZone(lat, lon);
+    const timeZone = calculateSolarTimes(date, lat, lon).timeZone;
     const [times, setTimes] = React.useState<Partial<SunTimes>>({});
     const [moonTimes, setMoonTimes] = React.useState<Partial<MoonTimes>>({});
     const [moonData, setMoonData] = React.useState<Partial<MoonData>>({});
 
     useEffect(() => {
-        const calculationDate = getDateAtTimeInZone(date, timeZone);
-        const sunTimes = GetTimes(calculationDate, lat, lon);
+        const {calculationDate, times: sunTimes} = calculateSolarTimes(date, lat, lon);
         setTimes({
             sunrise: sunTimes.sunrise,
             sunset: sunTimes.sunset,

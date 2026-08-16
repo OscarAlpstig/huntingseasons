@@ -8,6 +8,22 @@ import { COUNTIES } from '../data/lan';
 afterEach(cleanup);
 
 describe('JakttiderPage med strukturerad geografi', () => {
+  it('visar de korrigerade soltiderna för Katrineholm', () => {
+    render(
+      <JakttiderPage selectedDate={new Date(2026, 7, 16)} selectedLan="SE-D" setSelectedLan={vi.fn()} lat={58.9959442} lon={16.2058242} setLat={vi.fn()} setLon={vi.fn()} allLans={COUNTIES.map((county) => county.id)} />,
+    );
+
+    const phases = [...screen.getByLabelText('Sol- och måntider för vald dag').querySelectorAll('.solar-phases .astro-copy')]
+      .map((phase) => ({time: phase.querySelector('b')?.textContent, label: phase.querySelector('small')?.textContent}));
+
+    expect(phases).toEqual([
+      {time: '04:27', label: 'Borgerlig gryning'},
+      {time: '05:16', label: 'Soluppgång'},
+      {time: '20:41', label: 'Solnedgång'},
+      {time: '21:29', label: 'Borgerlig skymning'},
+    ]);
+  });
+
   it('visar solfaserna kronologiskt och månen med beräknad fas', () => {
     render(
       <JakttiderPage selectedDate={new Date(2026, 7, 25)} selectedLan="SE-AB" setSelectedLan={vi.fn()} lat={59.3293} lon={18.0686} setLat={vi.fn()} setLon={vi.fn()} allLans={COUNTIES.map((county) => county.id)} />,
