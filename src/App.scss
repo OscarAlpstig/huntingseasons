@@ -80,12 +80,13 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .nearby-forecast-heading strong { font-size: .78rem; }
 .nearby-forecast-heading span { color: var(--muted); font-size: .68rem; }
 .forecast-strip { width: 100%; max-width: 100%; display: flex; gap: 4px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline proximity; padding: 2px 2px .4rem; scrollbar-width: thin; }
-.forecast-hour { flex: 0 0 68px; min-width: 0; padding: .55rem .35rem; display: grid; justify-items: center; gap: .2rem; scroll-snap-align: start; border-color: #49605288; background: #082720; color: var(--muted); }
+.forecast-hour { flex: 0 0 auto; min-width: 92px; padding: .55rem .5rem; display: grid; justify-items: center; gap: .2rem; scroll-snap-align: start; border-color: #49605288; background: #082720; color: var(--muted); }
 .forecast-hour:hover { border-color: var(--sage); }
 .forecast-hour.selected { border-color: var(--orange); background: #173b31; box-shadow: inset 0 -2px var(--orange); color: var(--cream); }
 .forecast-hour time { font-size: .7rem; }
 .forecast-hour strong { color: var(--cream); font-size: .7rem; white-space: nowrap; }
-.forecast-hour > span:last-child { font-size: .62rem; white-space: nowrap; }
+.forecast-detail { font-size: .62rem; white-space: nowrap; }
+.forecast-precipitation { color: #a8d3e8; }
 .forecast-symbol { display: block; width: 28px; height: 28px; flex-shrink: 0; }
 .weather-icon { display: grid; place-items: center; position: relative; }
 .weather-icon-label { position: absolute; z-index: 1; top: 100%; left: 50%; transform: translateX(-50%); padding: .2rem .3rem; border: 1px solid var(--line); border-radius: 4px; background: var(--night); color: var(--cream); font-size: .65rem; line-height: 1.2; white-space: nowrap; pointer-events: none; visibility: hidden; }
