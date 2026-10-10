@@ -42,6 +42,14 @@ describe('lazy-loaded routes', () => {
     expect(window.location.pathname).toBe('/huntingseasons/jaktplanering');
   });
 
+  it('laddar planeringssidan med avslutande snedstreck från GitHub Pages', async () => {
+    renderAt('/jaktplanering/');
+
+    expect(await screen.findByRole('heading', { name: 'Vind & vittring' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Vind & vittring' })).toHaveClass('active');
+    expect(window.location.pathname).toBe('/huntingseasons/jaktplanering/');
+  });
+
   it('omdirigerar den gamla soltidsrouten till basrouten', async () => {
     renderAt('/soltider');
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
