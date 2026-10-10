@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetchSmhiForecast, type WeatherForecast } from '../../services/smhiForecast';
 import { compassDirection, destinationPoint, downwindDirection, weatherSymbol } from './wind';
+import WeatherIcon from './WeatherIcon';
 
 interface Props {
   lat: number;
@@ -29,9 +30,11 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
   const marker = useRef<L.Marker | null>(null);
   const plume = useRef<L.LayerGroup | null>(null);
   const plumeLine = useRef<L.Polyline | null>(null);
+  const framedDistance = useRef<number | null>(null);
   const callback = useRef(onLocationChange);
   const [forecast, setForecast] = useState<WeatherForecast | null>(null);
   const [selectedTime, setSelectedTime] = useState('');
+  const [displayDistance, setDisplayDistance] = useState(500);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [error, setError] = useState('');
   const [locationStatus, setLocationStatus] = useState<'idle' | 'loading' | 'error'>('idle');
@@ -43,6 +46,7 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
     if (!mapElement.current || map.current) return;
     const [initialLat, initialLon] = initialPosition.current;
     const instance = L.map(mapElement.current, { zoomControl: true }).setView([initialLat, initialLon], 12);
+    L.control.scale({ imperial: false }).addTo(instance);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors',
@@ -138,7 +142,7 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
 
     const { wind_from_direction: from, wind_speed: speed, wind_speed_of_gust: gust } = selectedForecast.data;
     const direction = downwindDirection(from);
-    const length = Math.min(8000, 2500 + speed * 850);
+    const length = displayDistance;
     const spreadAngle = Math.max(10, 32 - speed * 2 + Math.max(0, gust - speed));
     const left = destinationPoint(lat, lon, direction - spreadAngle, length);
     const end = destinationPoint(lat, lon, direction, length);
@@ -170,7 +174,13 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
     plumeLine.current = L.polyline([[lat, lon], end], {
       color: '#eadcc0', opacity: 0.65, weight: 1.5, dashArray: '4 10', className: 'scent-direction-line',
     }).addTo(map.current);
-  }, [lat, lon, selectedForecast]);
+    if (framedDistance.current !== displayDistance) {
+      map.current.fitBounds(L.latLngBounds([[lat, lon], previousLeft, previousRight, end]), {
+        padding: [48, 48], maxZoom: 17,
+      });
+      framedDistance.current = displayDistance;
+    }
+  }, [lat, lon, selectedForecast, displayDistance]);
 
   return (
     <section className="weather-map-panel" aria-labelledby="weather-map-heading">
@@ -201,14 +211,18 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
                 const probability = point.data.probability_of_precipitation ?? 0;
                 return <button type="button" key={point.time} className={isSelected ? 'forecast-hour selected' : 'forecast-hour'} aria-current={isSelected ? 'time' : undefined} onClick={() => setSelectedTime(point.time)}>
                   <time dateTime={point.time}>{formatHour.format(new Date(point.time))}</time>
-                  <span className="forecast-symbol" aria-hidden="true">{weatherSymbol(point.data.symbol_code, precipitation, point.data.precipitation_frozen_part)}</span>
+                  <WeatherIcon kind={weatherSymbol(point.data.symbol_code, precipitation, point.data.precipitation_frozen_part)} />
                   <strong>{point.data.wind_speed.toFixed(1)} m/s</strong>
                   <span>{compassDirection(point.data.wind_from_direction)} · {probability > 0 ? `${Math.round(probability)}%` : `${precipitation.toFixed(1)} mm`}</span>
                 </button>;
               })}
             </div>
           </div>
-          <p className="weather-disclaimer">Förenklad uppskattning baserad på prognostiserad vind. Terräng, vegetation och lokala luftströmmar kan ändra spridningen.</p>
+          <label htmlFor="scent-distance">Visningsavstånd</label>
+          <select id="scent-distance" value={displayDistance} aria-describedby="scent-distance-note" onChange={(event) => setDisplayDistance(Number(event.target.value))}>
+            {[100, 250, 500, 1000].map((distance) => <option key={distance} value={distance}>{distance.toLocaleString('sv-SE')} meter</option>)}
+          </select>
+          <p id="scent-distance-note" className="weather-disclaimer">Konen illustrerar spridningsriktningen över valt avstånd. Färgtoningen visar inte beräknad doftkoncentration och konens slut är ingen gräns för vad djur kan känna. Terräng och lokala luftströmmar kan ändra spridningen.</p>
         </>}
       </div>
       <div className="weather-map-wrap">

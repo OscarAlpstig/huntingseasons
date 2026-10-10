@@ -28,9 +28,10 @@ describe('vind och vittring', () => {
   });
 
   it('visar nederbörd tydligare än den generella vädersymbolen', () => {
-    expect(weatherSymbol(18, 0.4, 0)).toBe('🌧️');
-    expect(weatherSymbol(21, 0.4, 0.8)).toBe('🌨️');
-    expect(weatherSymbol(18, 0, 0)).toBe('🌧️');
-    expect(weatherSymbol(1, 0, 0)).toBe('☀️');
+    expect(weatherSymbol(18, 0.4, 0)).toBe('rain');
+    expect(weatherSymbol(21, 0.4, 0.8)).toBe('snow');
+    expect(weatherSymbol(18, 0, 0)).toBe('rain');
+    expect(weatherSymbol(1, 0, 0)).toBe('sun');
+    expect(weatherSymbol(19, 0.4, 0)).toBe('thunder');
   });
 });

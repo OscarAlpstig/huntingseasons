@@ -25,12 +25,12 @@ export function destinationPoint(lat: number, lon: number, bearing: number, dist
 }
 
 export function weatherSymbol(symbolCode?: number, precipitationAmount = 0, frozenPart = 0) {
-  if (precipitationAmount >= 0.1) return frozenPart >= 0.5 ? '🌨️' : '🌧️';
-  if (symbolCode === 7) return '🌫️';
-  if (symbolCode && [11, 19].includes(symbolCode)) return '⛈️';
-  if (symbolCode && [12, 13, 14, 15, 16, 17, 20, 21, 25, 26, 27].includes(symbolCode)) return '🌨️';
-  if (symbolCode && [8, 9, 10, 18, 22, 23, 24].includes(symbolCode)) return '🌧️';
-  if (symbolCode && [1, 2].includes(symbolCode)) return '☀️';
-  if (symbolCode && [3, 4].includes(symbolCode)) return '🌤️';
-  return '☁️';
+  if (symbolCode && [11, 19].includes(symbolCode)) return 'thunder';
+  if (precipitationAmount >= 0.1) return frozenPart >= 0.5 ? 'snow' : 'rain';
+  if (symbolCode === 7) return 'fog';
+  if (symbolCode && [12, 13, 14, 15, 16, 17, 20, 21, 25, 26, 27].includes(symbolCode)) return 'snow';
+  if (symbolCode && [8, 9, 10, 18, 22, 23, 24].includes(symbolCode)) return 'rain';
+  if (symbolCode && [1, 2].includes(symbolCode)) return 'sun';
+  if (symbolCode && [3, 4].includes(symbolCode)) return 'partly-cloudy';
+  return 'cloud';
 }
