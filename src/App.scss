@@ -29,8 +29,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .brand { display: flex; align-items: center; gap: .8rem; color: var(--cream); text-decoration: none; font: 700 1.55rem Barlow Condensed, sans-serif; letter-spacing: .06em; }
 .brand-mark { width: 46px; height: 46px; display: grid; place-items: center; color: var(--cream); }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; }
-.main-nav { display: flex; align-items: stretch; gap: 1.2rem; }
-.main-nav a { display: grid; place-items: center; position: relative; padding: 0 1.1rem; color: var(--cream); text-decoration: none; }
+.main-nav { display: flex; align-items: stretch; gap: .75rem; }
+.main-nav a { display: grid; place-items: center; position: relative; min-height: 48px; padding: .75rem 1.1rem; color: var(--cream); text-decoration: none; white-space: nowrap; }
 .main-nav a.active::after { content: ''; position: absolute; left: .8rem; right: .8rem; bottom: 0; height: 4px; background: var(--orange); }
 .header-tagline { margin-left: auto; align-self: center; color: var(--sage); }
 
@@ -62,7 +62,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .planning-hero h1 { margin: .3rem 0 .6rem; font: 700 clamp(2.5rem, 6vw, 4.5rem) Barlow Condensed, sans-serif; text-transform: uppercase; }
 .planning-hero p { max-width: 44rem; margin: 0; color: var(--muted); }
 .weather-map-loading { max-width: var(--content); margin: 36px auto 0; padding: 2rem; border: 1px solid var(--line); border-radius: 10px; color: var(--sage); }
-.weather-map-copy { padding: 1.5rem; }
+.weather-map-copy { min-width: 0; padding: 1.5rem; }
 .eyebrow { color: var(--orange); font: 600 .82rem Barlow Condensed, sans-serif; letter-spacing: .12em; }
 .weather-map-copy h2 { margin: .35rem 0 .5rem; font: 600 2rem Barlow Condensed, sans-serif; }
 .weather-map-copy > p { color: var(--muted); font-size: .85rem; line-height: 1.5; }
@@ -75,12 +75,12 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .wind-summary > div { min-width: 0; padding: .7rem; display: grid; gap: .2rem; background: #0b3029; }
 .wind-summary span { color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; }
 .wind-summary strong { color: var(--cream); font: 600 1.25rem Barlow Condensed, sans-serif; }
-.nearby-forecast { margin-top: 1rem; }
+.nearby-forecast { min-width: 0; margin-top: 1rem; }
 .nearby-forecast-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .5rem; }
 .nearby-forecast-heading strong { font-size: .78rem; }
 .nearby-forecast-heading span { color: var(--muted); font-size: .68rem; }
-.forecast-strip { display: grid; grid-template-columns: repeat(7, minmax(68px, 1fr)); gap: 4px; overflow-x: auto; padding: 2px 2px .4rem; scrollbar-width: thin; }
-.forecast-hour { min-width: 68px; padding: .55rem .35rem; display: grid; justify-items: center; gap: .2rem; border-color: #49605288; background: #082720; color: var(--muted); }
+.forecast-strip { width: 100%; max-width: 100%; display: flex; gap: 4px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline proximity; padding: 2px 2px .4rem; scrollbar-width: thin; }
+.forecast-hour { flex: 0 0 68px; min-width: 0; padding: .55rem .35rem; display: grid; justify-items: center; gap: .2rem; scroll-snap-align: start; border-color: #49605288; background: #082720; color: var(--muted); }
 .forecast-hour:hover { border-color: var(--sage); }
 .forecast-hour.selected { border-color: var(--orange); background: #173b31; box-shadow: inset 0 -2px var(--orange); color: var(--cream); }
 .forecast-hour time { font-size: .7rem; }
@@ -144,6 +144,8 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .simple-date-row input, .simple-date-row button { padding: .65rem; }
 
 @media (max-width: 1100px) {
+  .site-header { gap: 2rem; }
+  .header-tagline { display: none; }
   .hunting-hero { grid-template-columns: 1fr; padding: 2.5rem max(1.5rem, calc((100vw - 850px)/2)); }
   .hunting-hero > div:first-child { max-width: 720px; }
 }
@@ -159,15 +161,23 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
   .weather-map { min-height: 360px; }
 }
 @media (max-width: 640px) {
-  .site-header { height: auto; min-height: 64px; flex-wrap: wrap; }
+  .site-header { height: auto; min-height: 64px; display: grid; grid-template-columns: 1fr; gap: .5rem; padding: .5rem 14px; }
   .brand { font-size: 1.2rem; }
-  .main-nav { margin-left: auto; }
-  .main-nav a { padding: 0 .45rem; }
+  .main-nav { width: 100%; min-width: 0; margin: 0; padding-top: .5rem; gap: .5rem; border-top: 1px solid #34483f; }
+  .main-nav a { flex: 1; min-width: 0; padding: .75rem .5rem; border-radius: 6px; font-size: .88rem; }
+  .main-nav a.active { background: var(--pine-raised); }
+  .main-nav a.active::after { left: 1rem; right: 1rem; bottom: 3px; height: 3px; border-radius: 2px; }
   .hunting-hero h1 { font-size: 4rem; }
   .hunting-layout { padding: 24px 14px; gap: 24px; }
   .planning-page { padding-inline: 14px; padding-bottom: 36px; }
   .planning-hero { padding-top: 36px; }
   .weather-map-panel { margin: 18px 0 0; }
+  .weather-map-copy { padding: 1rem; }
+  .weather-map-copy h2 { font-size: 1.65rem; }
+  .wind-summary strong { font-size: 1.05rem; }
+  .weather-map-wrap, .weather-map { min-height: 300px; }
+  .map-location-button { width: 48px; height: 48px; top: 2.85rem; }
+  .weather-map-panel > footer { padding-inline: .75rem; }
   .sun-today { padding-inline: 1rem; }
   .astronomy-toggle { width: calc(100% + 2rem); margin-left: -1rem; }
   .solar-phases { grid-template-columns: 1fr 1fr; }
