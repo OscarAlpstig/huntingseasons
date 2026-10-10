@@ -30,6 +30,16 @@ describe('lazy-loaded routes', () => {
     await screen.findByRole('heading', { name: 'Jakttider' });
     expect(screen.queryByRole('link', { name: 'Soltider' })).not.toBeInTheDocument();
     expect(screen.getByLabelText('Sol- och måntider för vald dag')).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Vind & vittring' })).not.toBeInTheDocument();
+  });
+
+  it('visar vind och vittring på en egen planeringsroute', async () => {
+    renderAt('/jaktplanering');
+
+    expect(await screen.findByRole('heading', { name: 'Vind & vittring' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Vind & vittring' })).toHaveClass('active');
+    expect(screen.queryByRole('heading', { name: 'Jakttider' })).not.toBeInTheDocument();
+    expect(window.location.pathname).toBe('/huntingseasons/jaktplanering');
   });
 
   it('omdirigerar den gamla soltidsrouten till basrouten', async () => {

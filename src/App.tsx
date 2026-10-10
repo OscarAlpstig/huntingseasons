@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ALL_COUNTIES, COUNTIES, normalizeLanName } from './data/lan';
 
 const JakttiderPage = lazy(() => import('./pages/JakttiderPage'));
+const JaktplaneringPage = lazy(() => import('./pages/JaktplaneringPage'));
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -38,6 +39,15 @@ function App() {
                 setLat={setLat}
                 setLon={setLon}
                 allLans={allLans}
+              />
+            } />
+            <Route path="/jaktplanering" element={
+              <JaktplaneringPage
+                lat={lat}
+                lon={lon}
+                setLat={setLat}
+                setLon={setLon}
+                setSelectedLan={setSelectedLan}
               />
             } />
             <Route path="*" element={<Navigate to="/" replace />} />

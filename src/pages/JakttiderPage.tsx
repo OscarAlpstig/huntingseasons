@@ -46,7 +46,6 @@ const JakttiderPage = ({ selectedDate, setSelectedDate, selectedLan, setSelected
   const moonSet = moonTimes.alwaysUp ? 'Alltid uppe' : moonTimes.alwaysDown ? 'Alltid nere' : GetTimeOfDay(moonTimes.set, timeZone);
   const uniqueSpecies = new Set(visible.map(({ art }) => art)).size;
   const updateDate = setSelectedDate ?? (() => undefined);
-
   return (
     <div className="hunting-page">
       <section className="hunting-hero">

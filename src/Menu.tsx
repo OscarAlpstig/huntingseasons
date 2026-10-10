@@ -7,7 +7,10 @@ const Menu = () => (
       <span className="brand-mark"><BrandMark /></span>
       <span>JAKTSÄSONG</span>
     </Link>
-    <nav className="main-nav" aria-label="Huvudnavigation"><NavLink to="/">Jakttider</NavLink></nav>
+    <nav className="main-nav" aria-label="Huvudnavigation">
+      <NavLink to="/" end>Jakttider</NavLink>
+      <NavLink to="/jaktplanering">Vind &amp; vittring</NavLink>
+    </nav>
     <span className="header-tagline">Säker jakt. Stark natur.</span>
   </header>
 );
