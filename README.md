@@ -2,6 +2,10 @@
 
 En webbapplikation för svenska jakttider och soltider, byggd med React, TypeScript och Vite.
 
+Terrängkartan på **Vind & vittring** använder Leaflet med OpenTopoMap och
+OpenStreetMap. Se [kartdokumentationen](docs/terrangkarta.md) för attribution,
+lagerstruktur, GeoJSON och GitHub Pages.
+
 ## Kom igång
 
 ### Förutsättningar
