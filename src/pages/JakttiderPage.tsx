@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import JakttidCard from '../components/JakttidCard/JakttidCard';
 import LocationSelector from '../components/LocationSelector/LocationSelector';
-import { getFaglarList, getDaggdjurList } from '../data/jaktTiderLoader';
+import { getFaglarList, getDaggdjurList, getFaglarData, getDaggdjurData } from '../data/jaktTiderLoader';
 import { describeAreas, formatMonthDay, isDateInHuntingPeriod, matchArea } from '../data/huntingData';
 import { ALL_COUNTIES, getCountyDisplayName } from '../data/lan';
 import Moon from '../components/Moon';
@@ -96,7 +96,7 @@ const JakttiderPage = ({ selectedDate, setSelectedDate, selectedLan, setSelected
           </div>
         </section>
       </div>
-      <footer className="source-footer"><strong>KÄLLA</strong><span>Svenska Jägareförbundet – verifierade jakttider</span><span>ⓘ Kontrollera alltid lokala föreskrifter innan jakt.</span></footer>
+      <footer className="source-footer"><strong>KÄLLA</strong><span>Svenska Jägareförbundet – uppgifter verifierade {getDaggdjurData().source.verifiedDate} (däggdjur), {getFaglarData().source.verifiedDate} (fåglar).</span><span>ⓘ Sparade jakttider uppdateras med appen. Kontrollera alltid aktuella beslut och lokala föreskrifter innan jakt.</span></footer>
     </div>
   );
 };

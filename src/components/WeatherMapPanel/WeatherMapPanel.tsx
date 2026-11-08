@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { fetchSmhiForecast, type WeatherForecast } from '../../services/smhiForecast';
+import { type WeatherForecast } from '../../services/smhiForecast';
+import { isForecastExpired, loadForecast, type ForecastResult } from '../../offline/forecastStore';
 import { compassDirection, downwindDirection, weatherSymbol } from './wind';
 import WeatherIcon from './WeatherIcon';
 import TerrainMap from '../TerrainMap/TerrainMap';
@@ -26,14 +27,29 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
   const [displayDistance, setDisplayDistance] = useState(500);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [error, setError] = useState('');
+  const [forecastInfo, setForecastInfo] = useState<ForecastResult | null>(null);
+  const [refresh, setRefresh] = useState(0);
+  const [now, setNow] = useState(Date.now);
+
+  useEffect(() => {
+    const reconnect = () => setRefresh((value) => value + 1);
+    const timer = window.setInterval(() => setNow(Date.now()), 60000);
+    window.addEventListener('online', reconnect);
+    return () => { clearInterval(timer); window.removeEventListener('online', reconnect); };
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
     setStatus('loading');
     setError('');
+    setForecast(null);
+    setForecastInfo(null);
     const timer = window.setTimeout(() => {
-      fetchSmhiForecast(lat, lon, controller.signal)
-        .then((nextForecast) => {
+      loadForecast(lat, lon, controller.signal)
+        .then((result) => {
+          if (controller.signal.aborted) return;
+          const nextForecast = result.forecast;
+          setForecastInfo(result);
           setForecast(nextForecast);
           const now = Date.now();
           const closestFuture = nextForecast.timeSeries.find((point) => new Date(point.time).getTime() >= now);
@@ -43,7 +59,7 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
         .catch((reason: unknown) => {
           if (controller.signal.aborted) return;
           setForecast(null);
-          setError(reason instanceof Error ? reason.message : 'Väderprognosen kunde inte hämtas.');
+          setError(reason instanceof Error ? reason.message : 'Prognosen kunde inte uppdateras.');
           setStatus('error');
         });
     }, 250);
@@ -51,11 +67,13 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [lat, lon]);
+  }, [lat, lon, refresh]);
+
+  const expired = forecast ? isForecastExpired(forecast, now) : false;
 
   const selectedForecast = useMemo(
-    () => forecast?.timeSeries.find((point) => point.time === selectedTime) ?? null,
-    [forecast, selectedTime],
+    () => expired ? null : forecast?.timeSeries.find((point) => point.time === selectedTime) ?? null,
+    [forecast, selectedTime, expired],
   );
   const nearbyForecast = useMemo(() => {
     const selectedTimestamp = new Date(selectedTime).getTime();
@@ -84,6 +102,13 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
         <p>Klicka på kartan, dra markören eller använd positionsknappen i kartan.</p>
         {status === 'loading' && <p role="status" className="weather-status">Hämtar prognos från SMHI…</p>}
         {status === 'error' && <p role="alert" className="weather-error">{error}</p>}
+        {forecastInfo && <p className="weather-status" role="status">
+          {expired ? 'Sparad prognos har löpt ut. Vind och vittring visas inte förrän prognosen kan uppdateras.'
+            : forecastInfo.saved ? 'Sparad prognos – kan inte uppdateras.' : 'Prognosen är uppdaterad.'}
+          {' '}Hämtad {formatTime.format(new Date(forecastInfo.fetchedAt))}.
+          {!forecastInfo.persisted && ' Prognosen kunde inte sparas för offlinebruk.'}
+        </p>}
+        <button type="button" className="today-button" disabled={status === 'loading'} onClick={() => setRefresh((value) => value + 1)}>Uppdatera prognos</button>
         {forecast && selectedForecast && <>
           <label htmlFor="forecast-time">Prognostid</label>
           <select id="forecast-time" value={selectedTime} onChange={(event) => setSelectedTime(event.target.value)}>

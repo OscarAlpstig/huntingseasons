@@ -87,10 +87,10 @@ export function buildSmhiForecastUrl(lat: number, lon: number) {
   return `${API_BASE}/lon/${lon.toFixed(6)}/lat/${lat.toFixed(6)}/data.json`;
 }
 
-export async function fetchSmhiForecast(lat: number, lon: number, signal?: AbortSignal): Promise<WeatherForecast> {
+export async function fetchSmhiForecast(lat: number, lon: number, signal?: AbortSignal, forceRefresh = false): Promise<WeatherForecast> {
   const url = buildSmhiForecastUrl(lat, lon);
   const cached = cache.get(url);
-  if (cached && cached.expires > Date.now()) return cached.forecast;
+  if (!forceRefresh && cached && cached.expires > Date.now()) return cached.forecast;
 
   const response = await fetch(url, { signal, headers: { Accept: 'application/json' } });
   if (!response.ok) {

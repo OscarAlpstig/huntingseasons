@@ -5,6 +5,10 @@ import { BASE_LAYERS, DEFAULT_BASE_LAYER, type BaseLayerId } from './baseLayers'
 import { createSelectedMarker } from './markers';
 import { useGeolocation } from './useGeolocation';
 import type { MapOverlay } from './overlays';
+import OfflineMaps from '../../offline/OfflineMaps';
+import { listMapPackages, type MapPackage } from '../../offline/mapPackages';
+import { readPreference, writePreference } from '../../offline/preferences';
+import { useConnection } from '../../offline/connection';
 
 const NO_OVERLAYS: MapOverlay[] = [];
 interface Props {
@@ -25,11 +29,24 @@ export default function TerrainMap({ lat, lon, onLocationChange, overlays = NO_O
   const [baseLayer, setBaseLayer] = useState<BaseLayerId>(DEFAULT_BASE_LAYER);
   const [hiddenOverlays, setHiddenOverlays] = useState<string[]>([]);
   const [tileError, setTileError] = useState(false);
+  const [savedMap, setSavedMap] = useState<MapPackage | null>(null);
+  const [showSavedMap, setShowSavedMap] = useState(false);
+  const [outside, setOutside] = useState(false);
+  const online = useConnection();
   const id = useId();
   const { locate, loading, error } = useGeolocation((latitude, longitude) => {
     callback.current(latitude, longitude);
     map?.setView([latitude, longitude], Math.max(map.getZoom(), 14));
   });
+
+  useEffect(() => {
+    let active = true;
+    void listMapPackages().then((packs) => {
+      const pack = packs.find((item) => item.id === readPreference('map-id', ''));
+      if (active && pack) { setSavedMap(pack); setShowSavedMap(true); }
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     if (!container.current) return;
@@ -49,16 +66,41 @@ export default function TerrainMap({ lat, lon, onLocationChange, overlays = NO_O
 
   useEffect(() => {
     if (!map) return;
-    const configuration = BASE_LAYERS[baseLayer];
-    const tiles = L.tileLayer(configuration.url, configuration.options);
+    let stopped = false;
+    let tiles: L.Layer | undefined;
     setTileError(false);
+    if (showSavedMap && savedMap) {
+      void import('../../offline/vectorMapLayer').then(({ offlineMapLayer }) => {
+        if (stopped) return;
+        const savedTiles = offlineMapLayer(savedMap);
+        tiles = savedTiles;
+        savedTiles.on('tileerror', () => setTileError(true));
+        savedTiles.addTo(map);
+      }).catch(() => { if (!stopped) setTileError(true); });
+      return () => { stopped = true; tiles?.remove(); tiles?.off(); };
+    }
+    const configuration = BASE_LAYERS[baseLayer];
+    // Online-only services are never prefetched or cached by our service worker.
+    if (!online) return;
+    const onlineTiles = L.tileLayer(configuration.url, configuration.options);
     let failed = false;
-    tiles.on('loading', () => { failed = false; });
-    tiles.on('tileerror', () => { failed = true; setTileError(true); });
-    tiles.on('load', () => setTileError(failed));
-    tiles.addTo(map);
-    return () => { tiles.remove(); tiles.off(); };
-  }, [map, baseLayer]);
+    onlineTiles.on('loading', () => { failed = false; });
+    onlineTiles.on('tileerror', () => { failed = true; setTileError(true); });
+    onlineTiles.on('load', () => setTileError(failed));
+    onlineTiles.addTo(map);
+    return () => { onlineTiles.remove(); onlineTiles.off(); };
+  }, [map, baseLayer, savedMap, showSavedMap, online]);
+
+  useEffect(() => {
+    if (!map) return;
+    const update = () => {
+      if (!showSavedMap || !savedMap) { setOutside(false); return; }
+      const [west, south, east, north] = savedMap.bounds;
+      setOutside(!L.latLngBounds([[south, west], [north, east]]).contains(map.getBounds()) || map.getZoom() < savedMap.minZoom);
+    };
+    update(); map.on('moveend zoomend', update);
+    return () => { map.off('moveend zoomend', update); };
+  }, [map, showSavedMap, savedMap]);
 
   useEffect(() => {
     marker.current?.setLatLng([lat, lon]);
@@ -81,21 +123,33 @@ export default function TerrainMap({ lat, lon, onLocationChange, overlays = NO_O
       <details className="map-layer-control">
         <summary>Kartlager</summary>
         <label htmlFor={`${id}-base`}>Baskarta</label>
-        <select id={`${id}-base`} value={baseLayer} onChange={(event) => setBaseLayer(event.target.value as BaseLayerId)}>
+        <select id={`${id}-base`} value={showSavedMap ? 'saved' : baseLayer} onChange={(event) => {
+          const saved = event.target.value === 'saved'; setShowSavedMap(saved);
+          writePreference('map-id', saved ? savedMap?.id ?? '' : '');
+          if (!saved) setBaseLayer(event.target.value as BaseLayerId);
+        }}>
           {Object.entries(BASE_LAYERS).map(([key, { label }]) => <option key={key} value={key}>{label}</option>)}
+          {savedMap && <option value="saved">Sparad karta</option>}
         </select>
         {overlays.length > 0 && <fieldset><legend>Egna lager</legend>
           {overlays.map(({ id: overlayId, label }) => <label key={overlayId}>
             <input type="checkbox" checked={!hiddenOverlays.includes(overlayId)} onChange={(event) => setHiddenOverlays((hidden) => event.target.checked ? hidden.filter((value) => value !== overlayId) : [...hidden, overlayId])} /> {label}
           </label>)}
         </fieldset>}
+        <OfflineMaps selectedId={showSavedMap ? savedMap?.id : undefined} onPreview={(bounds) => map?.fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]], { padding: [32, 32] })} onSelect={(pack) => {
+          setSavedMap(pack); setShowSavedMap(Boolean(pack)); writePreference('map-id', pack?.id ?? '');
+          if (pack && map) {
+            const bounds = L.latLngBounds([[pack.bounds[1], pack.bounds[0]], [pack.bounds[3], pack.bounds[2]]]);
+            map.setView(bounds.getCenter(), Math.min(19, map.getBoundsZoom(bounds, true)));
+          }
+        }} />
       </details>
       <button type="button" className="map-locate" onClick={locate} disabled={loading} aria-label={loading ? 'Hämtar din position' : 'Använd min plats'} title="Använd min plats">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg>
       </button>
     </div>
-    {(error || tileError || loading) && <div className="map-notice" role={error ? 'alert' : 'status'}>
-      {error || (loading ? 'Hämtar din position…' : 'Delar av kartan kunde inte laddas. Prova Standardkarta under Kartlager eller försök igen senare.')}
+    {(error || tileError || loading || outside || (!online && !showSavedMap)) && <div className="map-notice" role={error ? 'alert' : 'status'}>
+      {error || (loading ? 'Hämtar din position…' : outside ? 'Vyn går utanför det sparade kartområdet eller detaljnivån. Zooma in eller välj ett annat sparat område.' : !online && !showSavedMap ? 'Den här baskartan kräver internet. Välj Sparad karta eller importera ett kartpaket under Kartlager.' : 'Delar av kartan kunde inte laddas. Byt kartlager eller försök igen senare.')}
     </div>}
     <span className="map-position">{lat.toFixed(5)}, {lon.toFixed(5)}</span>
   </div>;

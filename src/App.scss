@@ -98,9 +98,25 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .weather-map-wrap { min-height: 430px; position: relative; border-left: 1px solid var(--line); }
 .terrain-map { position: absolute; inset: 0; isolation: isolate; background: #16362f; }
 .terrain-map-canvas { position: absolute; inset: 0; z-index: 0; }
-.map-tools { position: absolute; z-index: 1; top: 10px; right: 10px; display: grid; justify-items: end; gap: 8px; max-width: calc(100% - 64px); }
+.map-tools { position: absolute; z-index: 1; top: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; max-width: calc(100% - 64px); max-height: calc(100% - 20px); }
 .map-layer-control { width: 180px; max-width: 100%; padding: .5rem .65rem; border: 1px solid var(--line); border-radius: 6px; background: #061b18f2; box-shadow: 0 2px 8px #0008; }
 .map-layer-control summary { cursor: pointer; min-height: 28px; align-content: center; font-size: .85rem; }
+.map-layer-control { overflow-y: auto; min-height: 44px; }
+.map-locate { flex-shrink: 0; }
+.offline-maps { margin-top: .75rem; border-top: 1px solid var(--line); padding-top: .5rem; font-size: .75rem; }
+.map-layer-control[open]:has(.offline-maps[open]) { width: 300px; }
+.offline-maps p { line-height: 1.5; }
+.offline-maps input[type=file] { width: 100%; font-size: .7rem; }
+.offline-maps button { min-height: 40px; padding: .35rem .5rem; margin: .25rem .25rem .25rem 0; }
+.offline-maps ul { list-style: none; padding: 0; }
+.offline-maps li { padding-block: .5rem; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+.offline-support { max-width: var(--content); margin: 1.5rem auto; padding: 1rem 24px 2rem; font-size: .85rem; line-height: 1.65; }
+.offline-support > details { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; background: var(--pine); scroll-margin-top: 10rem; }
+.offline-support summary { cursor: pointer; min-height: 44px; align-content: center; font-weight: 600; }
+.offline-support h2 { font: 600 1.5rem Barlow Condensed, sans-serif; }
+.offline-support button { padding: .5rem .8rem; min-height: 44px; }
+.offline-indicator { position: fixed; z-index: 1200; bottom: 10px; left: 10px; max-width: calc(100% - 20px); border: 1px solid var(--line); border-radius: 6px; padding: .4rem .65rem; background: #061b18f2; font-size: .75rem; pointer-events: none; }
+.offline-update { margin-bottom: 1rem; padding: .75rem; border: 1px solid var(--orange); border-radius: 6px; background: var(--pine); }
 .map-layer-control label { display: block; font-size: .78rem; margin-top: .5rem; }
 .map-layer-control select { width: 100%; min-height: 44px; padding: .4rem; margin-top: .35rem; font-size: .8rem; }
 .map-layer-control fieldset { border: 0; margin: .75rem 0 0; padding: 0; }

@@ -25,6 +25,8 @@ node_modules/
 
 # Byggmappar
 dist/
+test-results/
+playwright-report/
 .vite/
 
 # Konfigurationsfiler

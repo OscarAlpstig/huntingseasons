@@ -1,15 +1,17 @@
 // @vitest-environment jsdom
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 beforeEach(() => {
+  vi.stubEnv('BASE_URL', '/huntingseasons/');
   localStorage.clear();
 });
 
 afterEach(() => {
   cleanup();
+  vi.unstubAllEnvs();
 });
 
 function renderAt(path: string) {
@@ -53,13 +55,13 @@ describe('lazy-loaded routes', () => {
   it('omdirigerar den gamla soltidsrouten till basrouten', async () => {
     renderAt('/soltider');
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
-    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons'));
+    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons/'));
   });
 
   it('omdirigerar en okänd route till den lazy-laddade jakttidssidan', async () => {
     renderAt('/saknas');
 
     expect(await screen.findByRole('heading', { name: 'Jakttider' })).toBeInTheDocument();
-    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons'));
+    await waitFor(() => expect(window.location.pathname).toBe('/huntingseasons/'));
   });
 });

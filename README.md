@@ -6,6 +6,10 @@ Terrängkartan på **Vind & vittring** använder Leaflet med OpenTopoMap och
 OpenStreetMap. Se [kartdokumentationen](docs/terrangkarta.md) för attribution,
 lagerstruktur, GeoJSON och GitHub Pages.
 
+Appen kan installeras och förberedas för offlinebruk. Se
+[offline- och installationsdokumentationen](docs/offline.md) för sparade
+prognoser, kartpaket, tester och hur egna små områden framställs.
+
 ## Kom igång
 
 ### Förutsättningar

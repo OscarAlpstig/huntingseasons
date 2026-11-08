@@ -4,6 +4,8 @@ import Menu from './Menu'
 import 'react-datepicker/dist/react-datepicker.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ALL_COUNTIES, COUNTIES, normalizeLanName } from './data/lan';
+import { readPosition, writePreference } from './offline/preferences';
+import OfflineSupport from './offline/OfflineSupport';
 
 const JakttiderPage = lazy(() => import('./pages/JakttiderPage'));
 const JaktplaneringPage = lazy(() => import('./pages/JaktplaneringPage'));
@@ -11,19 +13,23 @@ const JaktplaneringPage = lazy(() => import('./pages/JaktplaneringPage'));
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedLan, setSelectedLan] = useState<string>(() => {
-    return normalizeLanName(localStorage.getItem('selectedLan') || ALL_COUNTIES) || ALL_COUNTIES;
+    try { return normalizeLanName(localStorage.getItem('selectedLan') || ALL_COUNTIES) || ALL_COUNTIES; }
+    catch { return ALL_COUNTIES; }
   });
-  const [lat, setLat] = useState(59.3293); // Default Stockholm
-  const [lon, setLon] = useState(18.0686);
+  const [initialPosition] = useState(readPosition);
+  const [lat, setLat] = useState(initialPosition[0]);
+  const [lon, setLon] = useState(initialPosition[1]);
+
+  useEffect(() => { writePreference('position', [lat, lon]); }, [lat, lon]);
 
   useEffect(() => {
-    localStorage.setItem('selectedLan', selectedLan);
+    try { localStorage.setItem('selectedLan', selectedLan); } catch { /* Filters remain usable if storage is restricted. */ }
   }, [selectedLan]);
 
   const allLans = COUNTIES.map((county) => county.id);
 
   return (
-    <BrowserRouter basename="/huntingseasons">
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Menu />
       <main>
         <Suspense fallback={<p role="status">Laddar sidan…</p>}>
@@ -54,6 +60,7 @@ function App() {
           </Routes>
         </Suspense>
       </main>
+      <OfflineSupport />
     </BrowserRouter>
   );
 }

@@ -29,7 +29,7 @@ describe('terrängkartan', () => {
     const tileSpy = vi.spyOn(L, 'tileLayer');
     render(<TerrainMap lat={59} lon={16} onLocationChange={vi.fn()} />);
     act(() => tileSpy.mock.results[0].value.fire('tileerror'));
-    expect(screen.getByRole('status')).toHaveTextContent('Prova Standardkarta');
+    expect(screen.getByRole('status')).toHaveTextContent('Byt kartlager');
     expect(screen.getByRole('button', { name: 'Använd min plats' })).toBeEnabled();
     fireEvent.change(screen.getByLabelText('Baskarta'), { target: { value: 'standard' } });
     expect(screen.queryByRole('status')).not.toBeInTheDocument();

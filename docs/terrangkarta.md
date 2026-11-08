@@ -24,7 +24,8 @@ attribution permanent i kartan, även på mobil:
 Se [OpenTopoMaps användningsinformation](https://wiki.opentopomap.org/about)
 och [OSM:s tile-policy](https://operations.osmfoundation.org/policies/tiles/).
 Vi laddar bara synliga tiles vid normal kartanvändning, använder webbläsarens
-HTTP-cache och erbjuder ingen massnedladdning eller offlinefunktion.
+HTTP-cache och erbjuder ingen områdesnedladdning från dessa rastertjänster.
+För separat sparade vektorkartor, se [offlinekartor och paketverktyget](offline.md).
 Tiles är externa tjänster utan garanterad tillgänglighet. Vid tile-fel visas
 en enkel uppmaning att byta baskarta; väder, markörer och resten av appen fungerar
 vidare. Kartinnehållets detaljrikedom och aktualitet varierar mellan områden.
