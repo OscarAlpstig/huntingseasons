@@ -110,11 +110,10 @@ button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible
 .offline-maps button { min-height: 40px; padding: .35rem .5rem; margin: .25rem .25rem .25rem 0; }
 .offline-maps ul { list-style: none; padding: 0; }
 .offline-maps li { padding-block: .5rem; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
-.offline-support { max-width: var(--content); margin: 1.5rem auto; padding: 1rem 24px 2rem; font-size: .85rem; line-height: 1.65; }
-.offline-support > details { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; background: var(--pine); scroll-margin-top: 10rem; }
-.offline-support summary { cursor: pointer; min-height: 44px; align-content: center; font-weight: 600; }
-.offline-support h2 { font: 600 1.5rem Barlow Condensed, sans-serif; }
-.offline-support button { padding: .5rem .8rem; min-height: 44px; }
+.installation-page { line-height: 1.65; }
+.installation-page h1 { margin-top: 0; font: 700 clamp(2.5rem, 6vw, 4rem) Barlow Condensed, sans-serif; text-transform: uppercase; }
+.installation-page h2 { font: 600 1.6rem Barlow Condensed, sans-serif; margin-top: 1.5rem; }
+.installation-page button { padding: .5rem .8rem; min-height: 44px; }
 .offline-indicator { position: fixed; z-index: 1200; bottom: 10px; left: 10px; max-width: calc(100% - 20px); border: 1px solid var(--line); border-radius: 6px; padding: .4rem .65rem; background: #061b18f2; font-size: .75rem; pointer-events: none; }
 .offline-update { margin-bottom: 1rem; padding: .75rem; border: 1px solid var(--orange); border-radius: 6px; background: var(--pine); }
 .map-layer-control label { display: block; font-size: .78rem; margin-top: .5rem; }

@@ -6,9 +6,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ALL_COUNTIES, COUNTIES, normalizeLanName } from './data/lan';
 import { readPosition, writePreference } from './offline/preferences';
 import OfflineSupport from './offline/OfflineSupport';
+import PageErrorBoundary from './components/PageErrorBoundary';
 
 const JakttiderPage = lazy(() => import('./pages/JakttiderPage'));
 const JaktplaneringPage = lazy(() => import('./pages/JaktplaneringPage'));
+const InstallationPage = lazy(() => import('./pages/InstallationPage'));
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -30,8 +32,10 @@ function App() {
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <OfflineSupport>
       <Menu />
       <main>
+        <PageErrorBoundary>
         <Suspense fallback={<p role="status">Laddar sidan…</p>}>
           <Routes>
             <Route path="/" element={
@@ -56,11 +60,13 @@ function App() {
                 setSelectedLan={setSelectedLan}
               />
             } />
+            <Route path="/installera" element={<InstallationPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
+        </PageErrorBoundary>
       </main>
-      <OfflineSupport />
+      </OfflineSupport>
     </BrowserRouter>
   );
 }

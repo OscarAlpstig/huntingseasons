@@ -1,4 +1,4 @@
-import { test, expect, chromium, type BrowserContext, type Page } from '@playwright/test';
+import { test, expect, chromium, webkit, type BrowserContext, type Page } from '@playwright/test';
 import { createServer, type Server } from 'node:http';
 import { readFile, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -7,15 +7,33 @@ import { extname, join } from 'node:path';
 let server: Server;
 let origin: string;
 let version = 1;
+let unavailablePlanningChunk = false;
+let weatherExpired = false;
+let weatherFails = false;
+let slowMapResponse = false;
+let networkUnavailable = false;
 const base = '/huntingseasons/';
 
 test.beforeAll(async () => {
   server = createServer(async (req, res) => {
+    if (networkUnavailable) { req.socket.destroy(); return; }
     const url = new URL(req.url!, 'http://localhost');
     if (!url.pathname.startsWith(base)) { res.writeHead(404).end(); return; }
     const relative = decodeURIComponent(url.pathname.slice(base.length));
+    if (relative === 'jaktplanering' || relative === 'installera') {
+      res.writeHead(301, { Location: `${base}${relative}/${url.search}` }).end(); return;
+    }
     if (relative.includes('..')) { res.writeHead(403).end(); return; }
     const path = relative.endsWith('/') || !relative ? `${relative}index.html` : relative;
+    if (path === '__test-weather.json') {
+      if (weatherFails) { res.writeHead(503).end(); return; }
+      const date = Date.now() + (weatherExpired ? -24 : 1) * 3600000;
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+      res.end(JSON.stringify({ geometry: { coordinates: [18.0686, 59.3293] }, timeSeries: Array.from({ length: 7 }, (_, i) => ({
+        time: new Date(date + i * 3600000).toISOString(), data: { wind_from_direction: 90, wind_speed: 2, wind_speed_of_gust: 4, precipitation_amount_mean: 0.4, probability_of_precipitation: 70, symbol_code: 18 },
+      })) })); return;
+    }
+    if (unavailablePlanningChunk && /assets\/JaktplaneringPage-.*\.js$/.test(path)) { res.writeHead(404).end(); return; }
     try {
       let content = await readFile(join(process.cwd(), 'dist', path));
       if (version === 2 && path === 'index.html') content = Buffer.from(content.toString().replace('<title>', '<title>Version 2 · '));
@@ -24,8 +42,16 @@ test.beforeAll(async () => {
         if (updated === content.toString()) throw new Error('No SW revision changed');
         content = Buffer.from(updated);
       }
+      // Browser-level route mocks don't cover SW-owned fetches in WebKit.
+      // Route only the test worker's SMHI traffic to our deterministic server.
+      if (path === 'sw.js') content = Buffer.from(`self.addEventListener('fetch',event=>{if(new URL(event.request.url).hostname==='opendata-download-metfcst.smhi.se')event.respondWith(fetch('${base}__test-weather.json',{cache:'no-store'}));});\n${content}`);
       const mime: Record<string, string> = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json', '.json': 'application/json' };
       res.writeHead(200, { 'Content-Type': mime[extname(path)] ?? 'application/octet-stream', 'Cache-Control': 'no-store' });
+      if (slowMapResponse && path.endsWith('.hsmap')) {
+        res.write(content.subarray(0, 16));
+        const timer = setTimeout(() => res.end(content.subarray(16)), 5000);
+        res.on('close', () => clearTimeout(timer)); return;
+      }
       res.end(content);
     } catch { res.writeHead(404).end(); }
   });
@@ -37,6 +63,7 @@ test.beforeAll(async () => {
 test.afterAll(async () => { await new Promise<void>((resolve) => server.close(() => resolve())); });
 
 async function mockWeather(context: BrowserContext, expired = false) {
+  weatherExpired = expired; weatherFails = false;
   await context.route('https://opendata-download-metfcst.smhi.se/**', async (route) => {
     const date = Date.now() + (expired ? -24 : 1) * 3600000;
     await route.fulfill({ json: { geometry: { coordinates: [18.0686, 59.3293] }, timeSeries: Array.from({ length: 7 }, (_, i) => ({
@@ -48,21 +75,24 @@ async function mockWeather(context: BrowserContext, expired = false) {
 
 async function ready(page: Page) {
   await page.goto(origin + base);
-  await page.getByText('Installera appen och använd offline', { exact: true }).click();
+  await page.getByRole('link', { name: 'Installera', exact: true }).click();
   await expect(page.getByText('Appen är redo offline på den här enheten.', { exact: true })).toBeVisible();
   await page.evaluate(() => navigator.serviceWorker.ready.then(() => true));
 }
 
-test('kallstart offline med båda sidor, sparat väder och karta utan externa tiles', async () => {
+test('kallstart offline med båda sidor, sparat väder och karta utan externa tiles', async ({ browserName }) => {
   version = 1;
   const profile = await mkdtemp(join(tmpdir(), 'huntingseasons-offline-test-'));
-  let context = await chromium.launchPersistentContext(profile, { headless: true, viewport: { width: 402, height: 874 } });
+  const browserType = browserName === 'webkit' ? webkit : chromium;
+  let context = await browserType.launchPersistentContext(profile, { headless: true, viewport: { width: 402, height: 874 } });
   try {
     await mockWeather(context);
     let page = context.pages()[0];
     await ready(page);
     const manifest = await (await page.request.get(origin + base + 'manifest.webmanifest')).json();
     expect(manifest.scope).toBe(base); expect(manifest.start_url).toBe(base);
+    expect(manifest.name).toBe('Hunting Seasons');
+    expect(manifest.icons[0].src).toBe('logo.png');
     await page.getByRole('link', { name: 'Vind & vittring' }).click();
     await expect(page.getByText('Prognosen är uppdaterad.', { exact: false })).toBeVisible();
     await page.getByText('Kartlager', { exact: true }).click();
@@ -86,7 +116,8 @@ test('kallstart offline med båda sidor, sparat väder och karta utan externa ti
       return urls.some((url) => url.includes('.hsmap'));
     })).toBe(false);
     await context.close();
-    context = await chromium.launchPersistentContext(profile, { headless: true, viewport: { width: 402, height: 874 } });
+    context = await browserType.launchPersistentContext(profile, { headless: true, viewport: { width: 402, height: 874 } });
+    networkUnavailable = true;
     await context.setOffline(true);
     page = context.pages()[0];
     const external: string[] = [];
@@ -104,18 +135,23 @@ test('kallstart offline med båda sidor, sparat väder och karta utan externa ti
     await expect(page.getByLabel('Sol- och måntider för vald dag')).toBeVisible();
     await page.reload();
     await expect(page.getByRole('heading', { name: 'Jakttider', exact: true })).toBeVisible();
-    await page.getByText('Installera appen och använd offline', { exact: true }).click();
+    await page.getByRole('link', { name: 'Installera', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'iPhone', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Android', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Installera', exact: true })).toHaveAttribute('aria-current', 'page');
+    await page.reload();
+    await expect(page.getByRole('heading', { name: 'Installera', exact: true })).toBeVisible();
     await mockWeather(context);
+    networkUnavailable = false;
     await context.setOffline(false);
     await page.getByRole('link', { name: 'Vind & vittring', exact: true }).click();
     await expect(page.getByText('Prognosen är uppdaterad.', { exact: false })).toBeVisible();
+    weatherFails = true;
     await context.route('https://opendata-download-metfcst.smhi.se/**', (route) => route.abort());
     await page.getByRole('button', { name: 'Uppdatera prognos', exact: true }).click();
     await expect(page.getByText('Sparad prognos – kan inte uppdateras.', { exact: false })).toBeVisible();
     expect(await page.evaluate(() => navigator.onLine)).toBe(true);
-  } finally { await context.close(); await rm(profile, { recursive: true, force: true }); }
+  } finally { networkUnavailable = false; await context.close(); await rm(profile, { recursive: true, force: true }); }
 });
 
 test('avbruten karthämtning och felaktig import skapar inget sparat område', async ({ browser }) => {
@@ -123,23 +159,21 @@ test('avbruten karthämtning och felaktig import skapar inget sparat område', a
   const context = await browser.newContext();
   await mockWeather(context);
   const page = await context.newPage();
-  let release!: () => void;
-  const gate = new Promise<void>((resolve) => { release = resolve; });
   try {
     await ready(page);
     await page.getByRole('link', { name: 'Vind & vittring', exact: true }).click();
     await page.getByText('Kartlager', { exact: true }).click();
     await page.getByText('Spara karta offline', { exact: true }).click();
-    await context.route('**/*.hsmap', async (route) => { await gate; await route.continue().catch(() => undefined); });
+    slowMapResponse = true;
     await page.getByRole('button', { name: 'Spara området', exact: true }).click();
     await page.getByRole('button', { name: 'Avbryt', exact: true }).click();
     await expect(page.getByText('Nedladdningen avbröts. Inget nytt område sparades.', { exact: true })).toBeVisible();
     expect(await page.locator('.offline-maps li').count()).toBe(0);
-    release();
+    slowMapResponse = false;
     await page.getByLabel('Importera eget kartpaket').setInputFiles({ name: 'fel.hsmap', mimeType: 'application/json', buffer: Buffer.from('{}') });
     await expect(page.getByText('Området kunde inte sparas.', { exact: false })).toBeVisible();
     expect(await page.locator('.offline-maps li').count()).toBe(0);
-  } finally { release(); await context.close(); }
+  } finally { slowMapResponse = false; await context.close(); }
 });
 
 test('utgången prognos och saknad prognos ger tydlig status utan vittring', async ({ browser }) => {
@@ -157,11 +191,13 @@ test('utgången prognos och saknad prognos ger tydlig status utan vittring', asy
       tx.oncomplete = () => { open.result.close(); resolve(); };
     }; });
   });
+  networkUnavailable = true;
   await context.setOffline(true);
   await context.unroute('https://opendata-download-metfcst.smhi.se/**');
   await page.reload();
   await expect(page.getByRole('alert').filter({ hasText: 'ingen sparad prognos' })).toBeVisible();
   expect(await page.locator('.scent-direction-line').count()).toBe(0);
+  networkUnavailable = false;
   await context.close();
 });
 
@@ -178,9 +214,28 @@ test('ny service worker uppdateras först efter godkännande och lämnar andra c
     version = 2;
     await page.evaluate(async () => { await (await navigator.serviceWorker.ready).update(); });
     await expect(page.getByRole('button', { name: 'Uppdatera appen', exact: true })).toBeVisible();
-    expect(await page.title()).toBe('Jaktsäsong');
+    expect(await page.title()).toBe('Hunting Seasons');
     await page.getByRole('button', { name: 'Uppdatera appen', exact: true }).click();
-    await expect(page).toHaveTitle('Version 2 · Jaktsäsong');
+    await expect(page).toHaveTitle('Version 2 · Hunting Seasons');
     expect(await page.evaluate(async () => (await caches.open('another-project-cache')).match('/other-project/test').then((value) => Boolean(value)))).toBe(true);
   } finally { version = 1; await context.close(); }
+});
+
+test('saknad sidfil efter publicering visar återhämtning i stället för en tom app', async ({ browser }) => {
+  version = 1;
+  unavailablePlanningChunk = true;
+  const context = await browser.newContext();
+  await mockWeather(context);
+  const page = await context.newPage();
+  try {
+    await page.goto(origin + base);
+    await expect(page.getByRole('heading', { name: 'Jakttider', exact: true })).toBeVisible();
+    await page.getByRole('link', { name: 'Vind & vittring', exact: true }).click();
+    await expect(page.getByRole('heading', { name: 'Sidan kunde inte laddas', exact: true })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Huvudnavigation' })).toBeVisible();
+    unavailablePlanningChunk = false;
+    await page.getByRole('button', { name: 'Hämta senaste versionen', exact: true }).click();
+    await expect(page.getByRole('heading', { name: 'Vind & vittring', exact: true })).toBeVisible({ timeout: 20000 });
+    await expect(page.getByText('Prognosen är uppdaterad.', { exact: false })).toBeVisible();
+  } finally { unavailablePlanningChunk = false; await context.close(); }
 });

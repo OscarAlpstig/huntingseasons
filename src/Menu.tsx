@@ -10,10 +10,7 @@ const Menu = () => (
     <nav className="main-nav" aria-label="Huvudnavigation">
       <NavLink to="/" end>Jakttider</NavLink>
       <NavLink to="/jaktplanering">Vind &amp; vittring</NavLink>
-      <a href="#offline-guide" onClick={() => {
-        const guide = document.getElementById('offline-guide') as HTMLDetailsElement | null;
-        if (guide) guide.open = true;
-      }}>Installera</a>
+      <NavLink to="/installera">Installera</NavLink>
     </nav>
     <span className="header-tagline">Säker jakt. Stark natur.</span>
   </header>

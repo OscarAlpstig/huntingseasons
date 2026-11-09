@@ -92,7 +92,7 @@ export async function fetchSmhiForecast(lat: number, lon: number, signal?: Abort
   const cached = cache.get(url);
   if (!forceRefresh && cached && cached.expires > Date.now()) return cached.forecast;
 
-  const response = await fetch(url, { signal, headers: { Accept: 'application/json' } });
+  const response = await fetch(url, { signal, cache: forceRefresh ? 'no-store' : 'default', headers: { Accept: 'application/json' } });
   if (!response.ok) {
     if (response.status === 400 || response.status === 404) throw new Error('Platsen ligger utanför SMHI:s prognosområde.');
     throw new Error(`Väderprognosen kunde inte hämtas (${response.status}).`);

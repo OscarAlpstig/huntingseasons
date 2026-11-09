@@ -5,8 +5,11 @@ godkännandeknapp för nya appversioner. Ingen backend eller API-hemlighet behö
 
 ## Användaren
 
-Installationsguiden öppnas via **Installera** i huvudmenyn och finns längst ned
-på båda sidorna under **Installera appen och använd offline**. Guiden ingår i appcachen. På iPhone används Safari → Dela →
+Installationsguiden är en egen sida på `/huntingseasons/installera/`, med aktivt
+menyval **Installera**. Guiden ingår i appcachen och visas inte under jakttider
+eller vindprognosen. Appens installationsnamn är **Hunting Seasons** och ikonen
+är den befintliga `public/logo.png`, även för iPhones apple-touch-icon.
+På iPhone används Safari → Dela →
 Lägg till på hemskärmen (Öppna som webbapp om valet finns). På Android används
 Chrome → ⋮ → Lägg till på startskärmen/Installera app. En inbyggd installationsknapp
 visas när webbläsaren erbjuder installation.
@@ -101,6 +104,9 @@ npm run test:offline
 npm run preview -- --host 127.0.0.1 --port 4175
 ```
 
+Webbläsartesterna kör både Chromium och WebKit (mobilvy). Installera vid behov
+testmotorerna med `npx playwright install chromium webkit`.
+
 Service worker är inte aktiverad i Vites vanliga dev-server. Testa därför på
 `http://127.0.0.1:4175/huntingseasons/` med preview, eller på HTTPS efter deployment.
 Första besök offline utan att appen har sparats kan inte fungera.
@@ -110,6 +116,11 @@ sparade testprofiler och kontrollerat väder. De verifierar kallstart offline
 efter stängd browser, båda sidornas refresh, verklig Canvas-rendering av
 kartpaketet, väderfallback/utgången/saknad prognos, återanslutning,
 uppdateringsgodkännande och att andra projekts cacher inte raderas.
+En regressionskontroll simulerar en saknad sidfil efter publicering:
+navigationen ska finnas kvar och knappen **Hämta senaste versionen** ska kunna
+ladda sidan igen. `version.json` är en separat nätverkskontroll utanför precachen;
+återhämtningen tar inte bort sparade kartor eller prognoser. Sidfel fångas av
+en route-avgränsad error boundary så att hela appen inte blir tom.
 Enhetstester täcker lagring, nätverksfallback, fel plats, paketfullständighet,
 lagringsbrist och förbud mot förhämtning från OSM/OpenTopoMap.
 Ingen verklig användarposition hämtas i testerna. Verifiering på fysisk iPhone

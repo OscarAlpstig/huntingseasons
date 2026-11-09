@@ -7,11 +7,11 @@ export default defineConfig({
     plugins: [react(), VitePWA({
         registerType: 'prompt', injectRegister: false, scope: '/huntingseasons/',
         manifest: {
-            id: '/huntingseasons/', name: 'Jaktsäsong', short_name: 'Jaktsäsong', lang: 'sv',
+            id: '/huntingseasons/', name: 'Hunting Seasons', short_name: 'Hunting Seasons', lang: 'sv',
             description: 'Jakttider, sol och måne samt jaktplanering – även offline.',
             start_url: '/huntingseasons/', scope: '/huntingseasons/', display: 'standalone',
             theme_color: '#061b18', background_color: '#061b18',
-            icons: [{ src: 'app-icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+            icons: [{ src: 'logo.png', sizes: '500x500', type: 'image/png', purpose: 'any' }],
         },
         workbox: {
             cacheId: 'huntingseasons-app',

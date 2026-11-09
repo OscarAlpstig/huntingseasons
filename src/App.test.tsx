@@ -42,6 +42,17 @@ describe('lazy-loaded routes', () => {
     expect(screen.getByRole('link', { name: 'Vind & vittring' })).toHaveClass('active');
     expect(screen.queryByRole('heading', { name: 'Jakttider' })).not.toBeInTheDocument();
     expect(window.location.pathname).toBe('/huntingseasons/jaktplanering');
+    expect(screen.queryByRole('heading', { name: 'iPhone' })).not.toBeInTheDocument();
+  });
+
+  it('visar installation på en egen sida och markerar rätt menyval', async () => {
+    renderAt('/installera/');
+    expect(await screen.findByRole('heading', { name: 'Installera' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Installera' })).toHaveClass('active');
+    expect(screen.getByRole('link', { name: 'Vind & vittring' })).not.toHaveClass('active');
+    expect(screen.getByRole('heading', { name: 'iPhone' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Android' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Vind & vittring' })).not.toBeInTheDocument();
   });
 
   it('laddar planeringssidan med avslutande snedstreck från GitHub Pages', async () => {
