@@ -127,14 +127,15 @@ export default function WeatherMapPanel({ lat, lon, onLocationChange }: Props) {
                 const isSelected = point.time === selectedTime;
                 const precipitation = point.data.precipitation_amount_mean;
                 const probability = point.data.probability_of_precipitation;
-                return <button type="button" key={point.time} className={isSelected ? 'forecast-hour selected' : 'forecast-hour'} aria-current={isSelected ? 'time' : undefined} onClick={() => setSelectedTime(point.time)}>
+                return <div key={point.time} className={isSelected ? 'forecast-hour selected' : 'forecast-hour'}>
+                  <button type="button" className="forecast-hour-select" aria-label={`Välj prognos ${formatTime.format(new Date(point.time))}`} aria-current={isSelected ? 'time' : undefined} onClick={() => setSelectedTime(point.time)} />
                   <time dateTime={point.time}>{formatHour.format(new Date(point.time))}</time>
                   <WeatherIcon kind={weatherSymbol(point.data.symbol_code, precipitation, point.data.precipitation_frozen_part)} />
                   <strong title="Vindstyrka och riktning">{point.data.wind_speed.toLocaleString('sv-SE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} m/s · {compassDirection(point.data.wind_from_direction)}</strong>
                   <span className="forecast-detail forecast-precipitation" title="Sannolikhet för nederbörd och prognostiserad mängd" aria-label={`Nederbördssannolikhet: ${probability === undefined ? 'uppgift saknas' : `${Math.round(probability)} procent`}. Nederbördsmängd: ${precipitation === undefined ? 'uppgift saknas' : `${precipitation.toLocaleString('sv-SE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} millimeter`}`}>
                     {probability === undefined ? '– %' : `${Math.round(probability)} %`} · {precipitation === undefined ? '– mm' : `${precipitation.toLocaleString('sv-SE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} mm`}
                   </span>
-                </button>;
+                </div>;
               })}
             </div>
           </div>

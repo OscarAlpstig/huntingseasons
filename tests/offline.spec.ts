@@ -239,3 +239,32 @@ test('saknad sidfil efter publicering visar återhämtning i stället för en to
     await expect(page.getByText('Prognosen är uppdaterad.', { exact: false })).toBeVisible();
   } finally { unavailablePlanningChunk = false; await context.close(); }
 });
+
+test('mobil visar väderförklaringen bara efter ikontryck och täcker inte vädervärden', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 402, height: 874 }, isMobile: true, hasTouch: true });
+  await mockWeather(context);
+  const page = await context.newPage();
+  try {
+    await ready(page);
+    await page.getByRole('link', { name: 'Vind & vittring', exact: true }).click();
+    await expect(page.getByText('Prognosen är uppdaterad.', { exact: false })).toBeVisible();
+    const cards = page.locator('.forecast-hour');
+    const label = cards.first().getByRole('tooltip', { includeHidden: true });
+    const icon = cards.first().getByRole('button', { name: 'Visa väderförklaring: Regn', exact: true });
+    await expect(label).toBeHidden();
+    await cards.nth(1).locator('.forecast-hour-select').click({ position: { x: 8, y: 8 } });
+    await expect(label).toBeHidden();
+    const selectedTime = await page.getByLabel('Prognostid', { exact: true }).inputValue();
+    await icon.click();
+    await expect(label).toBeVisible();
+    expect(await page.getByLabel('Prognostid', { exact: true }).inputValue()).toBe(selectedTime);
+    const textBounds = await label.boundingBox();
+    const windBounds = await cards.first().locator('strong').boundingBox();
+    expect(textBounds!.y + textBounds!.height).toBeLessThanOrEqual(windBounds!.y);
+    await icon.click();
+    await expect(label).toBeHidden();
+    await icon.click();
+    await page.getByRole('heading', { name: 'Vind & vittring', exact: true }).click();
+    await expect(label).toBeHidden();
+  } finally { await context.close(); }
+});
